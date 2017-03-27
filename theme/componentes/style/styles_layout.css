@@ -1,0 +1,138 @@
+/*
+  #####
+ #     # #    # ######  ####  ##### #  ####  #    #   ##   #####  #  ####
+ #       #    # #      #        #   # #    # ##   #  #  #  #    # # #    #
+ #       #    # #####   ####    #   # #    # # #  # #    # #    # # #    #
+ #       #    # #           #   #   # #    # #  # # ###### #####  # #    #
+ #     # #    # #      #    #   #   # #    # #   ## #    # #   #  # #    #
+  #####   ####  ######  ####    #   #  ####  #    # #    # #    # #  ####
+*/
+
+/* Contenedor Pregunta*/
+.que .formulation{
+  background-color: #d9edf7;
+  color: #333;
+  font-size: 14px;
+  border-color: #bce8f1;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 4px;
+}
+/* Contenedor Informacion Pregunta*/
+.que .info{
+  background-color: #eee;
+  color: #333;
+  border-color: #dcdcdc;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+}
+/*
+ #######
+ #        ####  #####   ####
+ #       #    # #    # #    #
+ #####   #    # #    # #    #
+ #       #    # #####  #    #
+ #       #    # #   #  #    #
+ #        ####  #    #  ####
+ */
+ /*contenedor post*/
+ .forumpost{
+   background-color:#f5f5f5;
+   border-color: #e3e3e3;
+   border-width: 1px;
+   border-style: solid;
+   border-radius: 4px;
+   color:#333;
+   font-size: 14px;
+ }
+ /*color de los links*/
+ .forumpost a{
+   color: #0070a8;
+ }
+
+ /*
+     #####
+    #     # #    #   ##   #####
+    #       #    #  #  #    #
+    #       ###### #    #   #
+    #       #    # ######   #
+    #     # #    # #    #   #
+     #####  #    # #    #   #
+*/
+.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax .yui-layout-unit-right{
+  background-color: #f5f5f5;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e3e3e3;
+}
+.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax #chat-userlist #users-list li{
+  /*color separador contenedor participante*/
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #ddd;
+}
+ul.list-group a{
+  color: #0070a8;
+}
+
+/*Panel mensajes*/
+.yui-layout-unit-center{
+  background-color: #fff;
+}
+/*Contendor Mensaje Propio*/
+.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax #chat-messages .mdl-chat-my-entry .chat-message.course-theme{
+  background: #f6f6f6;
+  color:#333;
+  border-style: solid;
+  border-color: #ddd;
+  border-width: 1px;
+  border-radius: 4px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+/*Color de letra Nombre Usuario*/
+.mdl-chat-my-entry .chat-message-meta .user a{
+  color: #0070a8;
+}
+/*Color de la hora del mensaje*/
+.mdl-chat-my-entry .chat-message-meta .time{
+  color:#777 !important;
+}
+/*Contendor Mensaje Entrante*/
+.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax #chat-messages .chat-message.course-theme{
+  background:#fff;
+  color:#333;
+  border-style: dotted;
+  border-color: #ddd;
+  border-width: 1px;
+  border-radius: 4px;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+/*Color de letra Nombre Usuario Mensaje Entrante*/
+.chat-message-meta .user a{
+  color: #0070a8;
+}
+/*Color de la hora del mensaje entrante*/
+.chat-message-meta .time{
+  color:#777 !important;
+}
+
+/*Panel Texto Mensaje*/
+.yui-skin-sam .yui-layout.path-mod-chat-gui_ajax .yui-layout-unit-bottom {
+  background-color: #f5f5f5 !important;
+}
+#chat-input-area .generaltable .lastrow .lastcol{
+  background-color: #f5f5f5;
+}
+/*Input Texto Mensaje*/
+#chat-input-area .generaltable td.cell #input-message{
+  background-color: #fff;
+  color: #333;
+}
+/* Boton Enviar Mensaje*/
+#chat-input-area .generaltable td.cell #button-send{
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#e6e6e6));
+  background-image: -webkit-linear-gradient(top,#fff,#e6e6e6);
+  background-image: -o-linear-gradient(top,#fff,#e6e6e6);
+  background-image: linear-gradient(to bottom,#fff,#e6e6e6);
+  color: #333;
+}

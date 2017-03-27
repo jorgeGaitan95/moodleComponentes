@@ -1,0 +1,10 @@
+<? php 
+define ( 'CLI_SCRIPT' ,  verdadera ) ; 
+requerir ( 'config.php' ) ;
+ 
+$ pluginman  = core_plugin_manager :: ejemplo ( ) ;
+ 
+foreach  ( $ pluginman -> get_plugin_types ( )  como  $ tipo  =>  $ dir )  { 
+    $ dir  =  substr ( $ dir ,  strlen ( $ CFG -> dirroot ) ) ; 
+    printf ( " % -20s  % -50s  % s " . PHP_EOL ,  tipo $ ,  $ pluginman -> plugintype_name_plural ( $ type ) ,  $ dir ) ; 
+}
