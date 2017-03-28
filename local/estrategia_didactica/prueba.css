@@ -1,0 +1,226 @@
+body{
+  margin: 0;
+}
+h1{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: -1px;
+  font-size: 33px;
+  margin-bottom: 20px;
+}
+.container{
+  margin-left: 150px;
+  float: left;
+}
+
+.transcript_title {
+  font-size: 20px;
+  line-height: 24px;
+  font-family: 'OpenSans-Light',Arial,sans-serif;
+  color: #2b333f;
+}
+#pdf-view{
+  float:left;
+  margin-left:20px;
+  margin-top:30px;
+  border-width: 2px;
+  border-style: inset;
+  border-color: initial;
+  border-image: initial;
+}
+#titlebar{
+  height: 32px;
+  width: 100%;
+  box-shadow: 0px 1px 3px rgba(50, 50, 50, 0.75);
+  background-image: url(../img/texture.png), -webkit-linear-gradient(rgba(69, 69, 69, .95), rgba(82, 82, 82, .99));
+
+}
+#documentName{
+  font-size: 16px;
+  margin-right: 10px;
+  margin-left: 10px;
+  padding-top: 8px;
+  color: #F2F2F2;
+  line-height: 14px;
+  font-family: sans-serif;
+}
+
+#toolbarContainer{
+  height: 32px;
+  width: 100%;
+  box-shadow: 0px -1px 3px rgba(50, 50, 50, 0.75);
+  background-image: url(../img/texture.png), -webkit-linear-gradient(rgba(82, 82, 82, .99), rgba(69, 69, 69, .95));
+}
+#toolbarLeft{
+  float:left;
+}
+#navButtons{
+  float: left;
+  margin-right: 15px;
+}
+.splitToolbarButton{
+  margin: 3px 2px 4px 0;
+  display: inline-block;
+}
+.splitToolbarButton > .toolbarButton:first-child,  .splitToolbarButton > .toolbarButton:last-child{
+  margin: 0;
+  margin-left: 4px;
+  margin-right: -1px;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+  border-right-color: transparent;
+}
+.splitToolbarButton > .toolbarButton{
+  float: left;
+}
+.toolbarButton{
+  min-width: 16px;
+  padding: 2px 6px 2px;
+  border: 1px solid transparent;
+  color: hsl(0,0%,95%);
+  font-size: 12px;
+  line-height: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
+  -webkit-transition-property: background-color, border-color, box-shadow;
+  -webkit-transition-duration: 150ms;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-property: background-color, border-color, box-shadow;
+  -moz-transition-duration: 150ms;
+  -moz-transition-timing-function: ease;
+  -ms-transition-property: background-color, border-color, box-shadow;
+  -ms-transition-duration: 150ms;
+  -ms-transition-timing-function: ease;
+  -o-transition-property: background-color, border-color, box-shadow;
+  -o-transition-duration: 150ms;
+  -o-transition-timing-function: ease;
+  transition-property: background-color, border-color, box-shadow;
+  transition-duration: 150ms;
+  transition-timing-function: ease;
+}
+.toolbarButton {
+    border: 0 none;
+    background-color: rgba(0, 0, 0, 0);
+    min-width: 32px;
+    height: 25px;
+    border-radius: 2px;
+    background-image: none;
+  }
+
+.toolbarButton.pageUp::before{
+  display: inline-block;
+  content: url('../img/toolbarButton-pageUp.png');
+}
+
+.splitToolbarButtonSeparator {
+  float: left;
+  padding: 8px 0;
+  width: 1px;
+  background-color: hsla(0,0%,00%,.5);
+  box-shadow: 0 0 0 1px hsla(0,0%,100%,.08);
+  display: inline-block;
+  margin: 5px 0;
+}
+
+.toolbarButton.pageDown::before {
+    display: inline-block;
+    content: url('../img/toolbarButton-pageDown.png');
+}
+
+.toolbarLabel{
+  min-width: 16px;
+  padding: 3px 4px 3px 2px;
+  margin: 4px 0px 4px 0;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  color: hsl(0,0%,85%);
+  font-size: 12px;
+  line-height: 14px;
+  text-align: left;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  cursor: default;
+  font-family: sans-serif;
+}
+
+.toolbarField.pageNumber {
+    min-width: 16px;
+    text-align: right;
+    width: 40px;
+}
+
+.toolbarField {
+    padding: 3px 6px;
+    margin: 4px 0 4px 0;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background-color: hsla(0,0%,100%,.09);
+    background-image: -moz-linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
+    background-clip: padding-box;
+    border: 1px solid hsla(0,0%,0%,.35);
+    border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42);
+    box-shadow: 0 1px 0 hsla(0,0%,0%,.05) inset,0 1px 0 hsla(0,0%,100%,.05);
+    color: hsl(0,0%,95%);
+    font-size: 12px;
+    line-height: 14px;
+    outline-style: none;
+    -moz-transition-property: background-color, border-color, box-shadow;
+    -moz-transition-duration: 150ms;
+    -moz-transition-timing-function: ease;
+}
+#canvasContainer{
+  padding: 5px 11px;
+  text-align: center;
+  background-color: #888;
+  background-image: url('../img/texture.png');
+}
+#the-canvas{
+  box-shadow:rgba(0, 0, 0, 0.74902) 0px 0px 7px 0px;
+}
+.vsj-transcript:before{
+    content: 'Tr';
+    font-family: 'Times New Roman';
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    font-size: 18px;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+/*Campo de Busqueda trasncripcion*/
+#query{
+  background: #e4e4e4;
+  padding:6px;
+  border-radius:5px 0 0 5px;
+  -moz-border-radius:5px 0 0 5px;
+  -webkit-border-radius:5px 0 0 5px;
+  -o-border-radius:5px 0 0 5px;
+  border:0 none;
+  width:200px;
+}
+.queryButton{
+  margin-left: 0 !important;
+  background:rgba(15, 39, 158, 0.819608);
+  color:white;
+  font: 'trebuchet ms', trebuchet;
+  padding:6px 20px;
+  border-radius:0 5px 5px 0;
+  -moz-border-radius:0 5px 5px 0;
+  -webkit-border-radius:0 5px 5px 0;
+  -o-border-radius:0 5px 5px 0;
+  border:0 none;
+  font-weight:bold;
+  text-shadow: none;
+}
+.searchBox{
+  margin-top: 16px;
+}
+
+.highlight{
+  background: #ffff00;
+  font-weight: bold;
+}

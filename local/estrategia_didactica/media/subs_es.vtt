@@ -1,0 +1,493 @@
+﻿WEBVTT
+
+1
+00:00:01.000 --> 00:00:05.000 D:vertical A:start
+Bien en esta oportunidad vamos a hablar sobre las identidades trigonométricas en este
+
+2
+00:00:05.300 --> 00:00:08.000
+video específicamente lo que vamos a hacer es construir entre comillas
+
+3
+00:00:08.100 --> 00:00:13.500
+construir las fórmulas más importantes que posteriormente se van aplicar en todos
+
+4
+00:00:14.000 --> 00:00:17.000
+los ejemplos que se van a publicar para comprobar que una identidad si es o no
+
+5
+00:00:17.000 --> 00:00:25.000
+es identidad trigonometrica pero en éste video insisto vamos a exhibir las fórmulas
+
+6
+00:00:25.000 --> 00:00:27.000
+es
+
+7
+00:00:27.500 --> 00:00:28.000
+es
+
+8
+00:00:28.000 --> 00:00:29.000
+bueno
+
+9
+00:00:29.000 --> 00:00:34.000
+es que vamos a exhibir 9 formulas en total que pues parece un número muy muy
+
+10
+00:00:35.000 --> 00:00:37.000
+grande pero pues la idea es que logramos una manera bastante sencilla y que todos
+
+11
+00:00:38.000 --> 00:00:43.000
+aprendamos a deducirlas veamos a lo primero que vamos a hacer es relacionar
+
+12
+00:00:44.000 --> 00:00:47.000
+las funciones trigonométricas con algo que ya hicimos en otro vídeo que se los
+
+13
+00:00:48.000 --> 00:00:50.000
+recomiendó mucho depronto las personas que no lo han visto se llama razones
+
+14
+00:00:51.000 --> 00:00:56.000
+trigonométricas que es lo que hacíamos en ese video colocábamos por acá 6 formulas
+
+15
+00:00:57.000 --> 00:01:05.000
+una 2 3 4 5 y 6 que era lo que hacíamos nosotros en ese video
+
+16
+00:01:06.000 --> 00:01:12.000
+recordemos que alla colocábamos en ese orden lo siguiente seno de x luego
+
+17
+00:01:13.000 --> 00:01:16.000
+colocamos tangente en la tercera posición ya les digo porque y luego colocamos
+
+18
+00:01:17.000 --> 00:01:20.000
+la secante en la quinta posición, resulta que es es muy bueno
+
+19
+00:01:21.000 --> 00:01:24.000
+aprenderse ese orden seno tanjente secante porque resulta que las otras tres
+
+20
+00:01:25.000 --> 00:01:28.000
+arrancan por co por co del anterior
+
+21
+00:01:29.000 --> 00:01:32.000
+si éste es seno de x el siguiente será coseno de x sea simplemente lo colocamos
+
+22
+00:01:33.000 --> 00:01:39.000
+ahí si este es tanjente de x el siguiente será cotanjente de x y si éste secante por
+
+23
+00:01:40.000 --> 00:01:45.000
+supuesto la otra será cosecante de x que pronto una manera buena de recordar la
+
+24
+00:01:46.000 --> 00:01:52.000
+sigla es como csc es la forma cosecante camila se calló esto
+
+25
+00:01:53.000 --> 00:01:56.000
+surgío como con una alumna en una clase en el comentario o en cómo que
+
+26
+00:01:57.000 --> 00:01:59.000
+hay siempre lo explicó esta manera y a la gente le guste y bueno se lo aprende
+
+27
+00:02:00.000 --> 00:02:04.000
+bastante facil camila se cayó listo vamos a ver cómo relacionamos ahora
+
+28
+00:02:05.000 --> 00:02:08.000
+estas funciones trigonométricas bien haciendo uso del vídeo en las razones
+
+29
+00:02:09.000 --> 00:02:13.000
+trigonométricas allá explicábamos que la primera era contraria con la última
+
+30
+00:02:14.000 --> 00:02:19.000
+entonces comoquemosle por arca enlazamos estas dos la segunda con la quinta y la tercera
+
+31
+00:02:20.000 --> 00:02:21.000
+con la cuarta
+
+32
+00:02:22.000 --> 00:02:24.000
+qué quiere decir que sean contrarias específicamente en lo siguiente si
+
+33
+00:02:25.000 --> 00:02:29.000
+seno de x es lo contrario que cosecante de x pues cosecante de x es lo mismo
+
+34
+00:02:30.000 --> 00:02:34.000
+que cosecante de x sobre uno lo contrario será cambiar el orden que
+
+35
+00:02:35.000 --> 00:02:39.000
+daria 1 sobre cosecante de x es decir que nos quedaría tal cual uno sobre cosecante
+
+36
+00:02:40.000 --> 00:02:44.000
+de x y del seno lo contrario de cosecante unos sobre cosecante y por
+
+37
+00:02:45.000 --> 00:02:50.000
+supuesto cosecante al ser lo contrario del seno nos quedaría 1 sobres el seno
+
+38
+00:02:51.000 --> 00:02:55.000
+de x hacemos exactamente lo mismo con la función coseno coseno es el
+
+39
+00:02:56.000 --> 00:03:01.000
+inverso multiplicativo de la secante la que nos daría uno sobre secante de
+
+40
+00:03:02.000 --> 00:03:05.000
+x y secante lo mismo contraria con la segunda que es coseno y nos
+
+41
+00:03:06.000 --> 00:03:11.000
+quedaría uno sobre coseno de x con la tangente que hacemos exactamente lo
+
+42
+00:03:12.000 --> 00:03:17.000
+mismo con la cotangente y nos quedaria a 1 sobre cotangente y cotangente
+
+43
+00:03:18.000 --> 00:03:23.000
+por supuesto con la tercera que es tángente sería uno sobre tangente de x pero
+
+44
+00:03:24.000 --> 00:03:29.000
+resulta que la función tangente y cotangente cuando vayamos a aplicarlas las
+
+45
+00:03:30.000 --> 00:03:31.000
+fórmulas que estamos construyendo aquí entre comillas
+
+46
+00:03:32.000 --> 00:03:36.000
+y los ejercicios prácticos ya para comprobar que algo es una entidad la
+
+47
+00:03:37.000 --> 00:03:40.000
+tangente recordando el video de las razones trigonométricas decíamos allá
+
+48
+00:03:41.000 --> 00:03:45.000
+que es seno sobre coseno es decir que la tangentes creándolo precisamente
+
+49
+00:03:46.000 --> 00:03:52.000
+así como seno de x sobre coseno de x esto digamos que no es que se nos dañe sino
+
+50
+00:03:53.000 --> 00:03:56.000
+que pues igual se aplicaría lo mismo no como la cotangente es lo contrario de la
+
+51
+00:03:57.000 --> 00:04:01.000
+tangente el inverso multiplicativo pues sería cambiar el orden acá es decir
+
+52
+00:04:02.000 --> 00:04:08.000
+que la cotangente nos quede escrita como coseno sobre senos y esas serían las
+
+53
+00:04:09.000 --> 00:04:11.000
+seis primeras fórmulas bien importantes que se van a utilizar en todos los
+
+54
+00:04:12.000 --> 00:04:16.000
+ejemplos posteriores y en este vídeo es concretamente vamos a explicar 9 hizo
+
+55
+00:04:17.000 --> 00:04:21.000
+para que la sepamos muy muy bien y les vamos a aplicar fácilmente en los
+
+56
+00:04:22.000 --> 00:04:24.000
+ejercicios en ternas que área de xenopus denotan gente vota gentes de
+
+57
+00:04:25.000 --> 00:04:28.000
+cánticos de kant esto los está por acá esto vamos a tener en cuenta los
+
+58
+00:04:29.000 --> 00:04:32.000
+que están a que esas de acá piezas de a camps esas de acam pues no son como
+
+59
+00:04:33.000 --> 00:04:37.000
+tan claves por ahora listo para mostrar de dónde salen las otras tres las 7 8 y 9
+
+60
+00:04:38.000 --> 00:04:42.000
+la fórmula esta si me gustaría mucho que se la prendieran de memoria que es
+
+61
+00:04:43.000 --> 00:04:46.000
+una entidad muy importante una formula bien bien clave y es que seno cuadrado
+
+62
+00:04:47.000 --> 00:04:48.000
+más coseno cuadrado es igual a 1
+
+63
+00:04:49.000 --> 00:04:53.000
+colocamos precisamente esa seno cuadrado de x mas coseno cuadrado
+
+64
+00:04:54.000 --> 00:04:58.000
+de x igua esl a 1 esta fórmula es tan importante que incluso tiene un nombre identidad
+
+65
+00:04:59.000 --> 00:05:07.000
+pitagórica listo cada vez que les hablen de la identidad pitagorica se refiere a esto
+
+66
+00:05:08.000 --> 00:05:12.000
+seno cuadrado de un ángulo más cosano cuadrado del mismo ángulo es igual a 1 esta ideentidad en
+
+67
+00:05:13.000 --> 00:05:16.000
+realidad sale de un triángulo rectángulo utilizando el teorema de
+
+68
+00:05:17.000 --> 00:05:20.000
+pitágoras de pronto más adelante lo profundizamos para que quede mucho mucho
+
+69
+00:05:21.000 --> 00:05:24.000
+más claro pero pues digamos que por ahora aprendamonos esta de memoria y
+
+70
+00:05:25.000 --> 00:05:30.000
+vamos a deducir la octava y la novena para deducir la octava lo que vamos a hacer
+
+71
+00:05:31.000 --> 00:05:33.000
+es lo siguiente dónde colocar exactamente lo que dice ahí la identidad
+
+72
+00:05:34.000 --> 00:05:39.000
+pitagorica seno cuadrado más cosano cuadrado igual a 1 y lo que vamos a
+
+73
+00:05:40.000 --> 00:05:44.000
+hacer es dividir todos los términos entre seno cuadrado de x entonces seno
+
+74
+00:05:45.000 --> 00:05:50.000
+cuadrado de x por acá por acá también y por acá también esto bueno obviamente
+
+75
+00:05:51.000 --> 00:05:54.000
+que esta igualdad se sigue conservando lo que estamos dividiendo entre la misma
+
+76
+00:05:55.000 --> 00:05:56.000
+cantidad a cada uno de los términos
+
+77
+00:05:57.000 --> 00:06:01.000
+entonces lo que hacemos hay simplemente es aplicar las fórmulas que ya vimos en
+
+78
+00:06:02.000 --> 00:06:05.000
+la primera parte las seis primeras fórmulas que tenemos por acá entonces
+
+79
+00:06:06.000 --> 00:06:09.000
+le dijimos los que bueno seno cuadradoo sobre seno cuadrado se nos
+
+80
+00:06:10.000 --> 00:06:13.000
+cancela todo número dividido entre sí mismo da uno desde que no sea cero sobre cero
+
+81
+00:06:14.000 --> 00:06:18.000
+seno cuadrado sibre seno cuadrado nos daria uno coseno sobre seno
+
+82
+00:06:19.000 --> 00:06:22.000
+fijémonos que según de las primeras seis fórmulas que tenemos por
+
+83
+00:06:23.000 --> 00:06:27.000
+acá coseno sobre seno es exactamente igual a la cotangente pero como en este
+
+84
+00:06:28.000 --> 00:06:32.000
+caso están al cuadrado de seria coseno al cuadrado seno al cuadrado sería cotángente
+
+85
+00:06:33.000 --> 00:06:39.000
+al cuadrado de x entonces simplemente lo colocamos ahi cotangente al cuadrado de x
+
+86
+00:06:40.000 --> 00:06:45.000
+y eso es igual a 1 sobre seno al cuadrado fijemonos que uno sobre seno de
+
+87
+00:06:46.000 --> 00:06:51.000
+segun esta tablita 1 sobre seno es la sexta que sería cosecante de x como uno
+
+88
+00:06:52.000 --> 00:06:54.000
+sobre seno es cosecante de x lo colocamos hay tal cual pero
+
+89
+00:06:55.000 --> 00:06:58.000
+fijémonos que acá esto es como si estuviera 1 al cuadrado sobre seno al cuadrado
+
+90
+00:06:59.000 --> 00:07:05.000
+uno al cuadrado es igual a uno o sea que es en realidad sería como uno sobre
+
+91
+00:07:03.000 --> 00:07:09.000
+seno todo al cuadrado entonces nos daría cosecante al cuadrado de x y ésta sería nuestra octava
+
+92
+00:07:10.000 --> 00:07:09.000
+formula que acabamos de deducir no en realidad es mucho más fácil aprender a
+
+93
+00:07:16.000 --> 00:07:21.000
+deducirla utilizándo la identidad pitagorica y dividiendo todo entre seno cuadrado de x lo que
+
+94
+00:07:22.000 --> 00:07:25.000
+pasa es que en realidad esto a veces es como complicado uno aprenderselo no a veces a uno
+
+95
+00:07:26.000 --> 00:07:29.000
+se le olvida que uno más cotangente al cuadrado de x es igual a cosecante al cuadrado de
+
+96
+00:07:30.000 --> 00:07:35.000
+x cuando pase eso simplemente tomamos la identidad pitagórica y dividimos todo entre seno
+
+97
+00:07:36.000 --> 00:07:40.000
+cuadrado de x de igual manera y ya para que terminemos el vídeo la novena formula
+
+98
+00:07:41.000 --> 00:07:45.000
+simplemente sería tomar de nuevo la identidad pitagórica tal cual como está
+
+99
+00:07:46.000 --> 00:07:50.000
+ahi sneo cuadrado mas coseno cuadrado igual a uno y lo que hacemos ahora es no dividir
+
+100
+00:07:51.000 --> 00:07:55.000
+entre seno cuadrado sino entre coseno cuadrado entonces colocamos coseno
+
+101
+00:07:56.000 --> 00:08:01.000
+cuadrado por acá por acá y por acá listo y aplicamos todas las fórmulas
+
+102
+00:08:02.000 --> 00:08:03.000
+que vimos antes exactamente de la misma manera
+
+103
+00:08:04.000 --> 00:08:09.000
+entonces tenemos en cuenta eso seno sobre cosano en una tablita a la tercera
+
+104
+00:08:10.000 --> 00:08:13.000
+seno sobre coseno es tangente pero ya sabemos que como está el cuadrado
+
+105
+00:08:14.000 --> 00:08:16.000
+sería al cuadrado la tangente
+
+106
+00:08:17.000 --> 00:08:22.000
+por lo que esas dos están el cuadrado entonces seria tangente al cuadrado de x mas
+
+107
+00:08:23.000 --> 00:08:25.000
+que hacemos exactamente lo mismo coseno sobre coseno estan al cuadrado pero
+
+108
+00:08:26.000 --> 00:08:31.000
+son el mismo se cancelan y nos da uno y finalmente uno sobre coseno
+
+109
+00:08:32.000 --> 00:08:36.000
+que ya sabemos que todo esto es como uno sobre coseno todo al cuadrado en una
+
+110
+00:08:37.000 --> 00:08:43.000
+tablita una sobre coseno es secante de ex y la colocamos al cuadrado y de esta
+
+111
+00:08:44.000 --> 00:08:50.000
+manera deducimos la última de las nuevas fórmulas que acabamos de mirar pero
+
+112
+00:08:51.000 --> 00:08:53.000
+entonces muy importante les recomiendó les doy ese consejo que entonces nos lo
+
+113
+00:08:54.000 --> 00:08:59.000
+aprendamos de esa manera seno tangente secante y luego co co y co para que
+
+114
+00:09:00.000 --> 00:09:03.000
+quede mucho más rápido y que una es la inversa multiplicativa de la otra
+
+115
+00:09:04.000 --> 00:09:08.000
+el primero con el sexto segundo con el quinto y tercero con el cuarto y estas
+
+116
+00:09:09.000 --> 00:09:14.000
+tres utilizando la identidad pitagórica simplemente dividiendo entre seno cuadrado y
+
+117
+00:09:15.000 --> 00:09:19.000
+entre coseno cuadrado de x bueno con ello ya tenemos nuestras 9 formulas
+
+118
+00:09:20.000 --> 00:09:24.000
+principales que ahora sí vamos a poder utilizar en los otros videos para saber
+
+119
+00:09:25.000 --> 00:09:29.000
+cuando algo es o no es una identidad trigonométrica espero que les haya gustado
+
+120
+00:09:30.000 --> 00:09:33.000
+mucho este video que hayan despejado dudas que lo puedan compartir con sus amigos y
+
+121
+00:09:34.000 --> 00:09:36.000
+podamos seguir ayudando a mucha gente más
+
+122
+00:09:37.000 --> 00:09:40.000
+muchos éxitos como siempre para todos y nos seguiremos encontrando en otra
+
+123
+00:09:41.000 --> 00:09:50.000
+ocasión, chao

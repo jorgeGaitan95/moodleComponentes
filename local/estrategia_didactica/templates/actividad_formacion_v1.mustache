@@ -1,0 +1,41 @@
+<p >
+  <span id="nombre">Nombre Actividad:</span>
+  <span>Lorem ipsum dolor sit amet</span>
+<p>
+  <span>Descripcion:</span>
+  <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+</p>
+<video
+    id="my-player"
+    class="video-js"
+    controls
+    width="600"
+    height="300"
+    preload="auto"
+    data-setup='{"playbackRates": [1, 1.5, 2]}'>
+
+    <source data-res="144" src="media/identidades.mp4" type="video/mp4" label='144'/>
+    <track src="media/subs_en.vtt" srclang="en" label="English" kind="subtitles" type="text/vtt">
+    <track src="media/subs_es.vtt" srclang="es" label="Spanish" kind="subtitles" type="text/vtt">
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a
+      web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">
+        supports HTML5 video
+      </a>
+    </p>
+</video>
+<div id="transcript">
+</div>
+{{#js}}
+var video = videojs('my-player');
+console.log(document.querySelector('#transcript'));
+var options = {
+  showTitle: false,
+  showTrackSelector: true,
+};
+var transcript = video.transcript(options);
+// Then attach the widget to the page.
+var transcriptContainer = document.querySelector('#transcript');
+transcriptContainer.appendChild(transcript.el());
+{{/js}}
