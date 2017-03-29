@@ -20,7 +20,7 @@
  * You can have a rather longer description of the file as well,
  * if you like, and it can span multiple lines.
  *
- * @package    local_flowdiagram
+ * @package    local_estrategia_didactica
  * @copyright  2017 Jorge Gaitán <jorgegaitan903@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 $string['modulename'] = 'Estrategia Didactica';
 $string['modulenameplural'] = 'Estrategias Didacticas';
 $string['modulename_help'] = 'Use the newmodule module for... | The newmodule module allows...';
-$string['estrategia_didactica:addinstance'] = 'Add a new newmodule';
+$string['estrategia_didactica:addinstance'] = 'Add Educational strategy';
 $string['estrategia_didactica:submit'] = 'Submit newmodule';
 $string['estrategia_didactica:view'] = 'View newmodule';
 $string['estrategia_didactica_fieldset'] = 'Custom example fieldset';

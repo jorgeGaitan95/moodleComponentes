@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/estrategia_didactica/db" VERSION="20170327" COMMENT="XMLDB file for Moodle local/estrategia_didactica"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="educational_strategy" COMMENT="Each of these is a edcuational strategy">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="assigneducational_strategy" COMMENT="Estategia edutativa asiganada a un estudiante dentro de un curso">
+      <FIELDS>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="educational_strategy_id" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+        <KEY NAME="courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+        <KEY NAME="educational_strategy_id" TYPE="foreign" FIELDS="educational_strategy_id" REFTABLE="educational_strategy" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="activities" COMMENT="Actividades de la Estrategia Educativa">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="educational_strategy_id" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="name" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="message" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="educational_strategy_id" UNIQUE="false" FIELDS="educational_strategy_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="quiz_components" COMMENT="representa una referencia a un quiz">
+      <FIELDS>
+        <FIELD NAME="activitiesid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="quizid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="activitiesid" TYPE="foreign" FIELDS="activitiesid" REFTABLE="activities" REFFIELDS="id"/>
+        <KEY NAME="quizid" TYPE="foreign" FIELDS="quizid" REFTABLE="quiz" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="forum_components" COMMENT="representa una referencia a un foro">
+      <FIELDS>
+        <FIELD NAME="activitiesid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="forumid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="activitiesid" TYPE="foreign" FIELDS="activitiesid" REFTABLE="activities" REFFIELDS="id"/>
+        <KEY NAME="forumid" TYPE="foreign" FIELDS="forumid" REFTABLE="forum" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="chat_components" COMMENT="representa una referencia a un chat">
+      <FIELDS>
+        <FIELD NAME="activitiesid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="chatid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="activitiesid" TYPE="foreign" FIELDS="activitiesid" REFTABLE="activities" REFFIELDS="id"/>
+        <KEY NAME="chatid" TYPE="foreign" FIELDS="chatid" REFTABLE="chat" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="video_components" COMMENT="Actividades de la Estrategia Educativa">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="activitiesid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="videourl" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="activitiesid" UNIQUE="false" FIELDS="activitiesid"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="viewer_components" COMMENT="Actividades de la Estrategia Educativa">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="activitiesid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="videourl" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="activitiesid" UNIQUE="false" FIELDS="activitiesid"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>
