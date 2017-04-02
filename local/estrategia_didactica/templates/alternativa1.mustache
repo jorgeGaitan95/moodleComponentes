@@ -1,0 +1,25 @@
+<p >
+  <span id="nombre">Nombre Actividad:</span>
+  <span>Lorem ipsum dolor sit amet</span>
+<p>
+  <span>Descripcion:</span>
+  <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+</p>
+<div id="splash" style="background-color:#efefef; width:100%; height:500px;">
+  <h1>Cargando....</h1>
+</div>
+<iframe id="iframe-forum" style="width:100%; height:500px;display:none" src="/moodle/mod/forum/view.php?id=13" onload="actualizacion_iframe(this)" onAfterUpdate="console.log('after update')"></iframe>
+
+<script id="prueba" type="text/javascript">
+  var scriptTag = "<script>var page=document.getElementById('page'); var page_content = document.getElementById('region-main'); page_content.style.float='none'; page_content.style.width='95%'; console.log(page_content); page.innerHTML=page_content.outerHTML<";
+  scriptTag +=  "/script>";
+  actualizacion_iframe= function(){
+    console.log('on load');
+    $("#splash").css("display","none");
+    $("#iframe-forum").css("display","block");
+    $("#iframe-forum").contents().find('body').append(scriptTag);
+  }
+  $("#iframe-forum").ready(function (){
+    console.log("ready?")
+  });
+</script>

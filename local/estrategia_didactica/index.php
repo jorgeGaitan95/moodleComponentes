@@ -32,16 +32,19 @@ $PAGE->set_context(context_system::instance());
 $PAGE->set_title('Flow Diagram');
 $PAGE->set_heading('Flow Diagram Prueba');
 $PAGE->set_pagelayout('standard');
+$PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style.css'),true);
 $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/videojs-transcript.css'),true);
 $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/prueba.css'),true);
 $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/video-js.min.css'),true);
 $PAGE->requires->js(new moodle_url('/media/player/videojs/amd/build/video-lazy.min.js'),true);
 $PAGE->requires->js(new moodle_url('/local/estrategia_didactica/videojs-transcript.js'),true);
+$PAGE->requires->js(new moodle_url('/local/estrategia_didactica/jquery.min.js'),true);
 $PAGE->requires->js(new moodle_url('/local/estrategia_didactica/app.js'),true);
+print_object($PAGE->context);
 echo $OUTPUT->header();
 // Displaying basic content.
 //$OUTPUT->content='<h1>Hola esta es la actividad de formacion</h1>';
 
-echo $OUTPUT->render_from_template('local_estrategia_didactica/actividad_formacion_v1', context_system::instance());
+echo $OUTPUT->render_from_template('local_estrategia_didactica/alternativa1', context_system::instance());
 // Display the footer.
 echo $OUTPUT->footer();

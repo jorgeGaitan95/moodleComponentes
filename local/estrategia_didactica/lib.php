@@ -29,4 +29,5 @@ $nodeFoo = $navigation->add('Estrategia Didáctica');
 $nodeBar = $nodeFoo->add('Actividad Formación');
 $nodeVaribilidaddes=$nodeBar->add('Variabilidad1',new moodle_url('/local/estrategia_didactica/index.php'));
 $nodeVaribilidaddes=$nodeBar->add('Variabilidad2',new moodle_url('/local/estrategia_didactica/variabilidad2.php'));
+$nodeVaribilidaddes=$nodeBar->add('PruebaQuiz',new moodle_url('/local/estrategia_didactica/variabilidad2.php'));
 }

@@ -26,6 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 class block_pruebahtml extends block_base {
     public function init() {
         $this->title = get_string('simplehtml', 'block_simplehtml');
+
     }
 
     public function get_content() {
@@ -36,7 +37,7 @@ class block_pruebahtml extends block_base {
       $this->content         =  new stdClass;
       $this->content->text   = 'Prueba para añadir un pligin tipo block dentro de moodle!';
       $this->content->text .='<p><a href="/moodle/local/flowdiagram/index.php">hola</a></p>';
-      $this->content->footer = 'Aqui podría ir mas infromación ';
+      $this->content->footer = print_object($this->page->course->id);
 
       return $this->content;
     }

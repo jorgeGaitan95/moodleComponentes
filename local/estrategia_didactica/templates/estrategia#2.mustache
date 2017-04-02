@@ -5,7 +5,9 @@
   <span>Descripcion:</span>
   <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
 </p>
-<iframe id="iframe-forum" style="width:500px; height:500px;"src="/moodle/mod/forum/view.php?id=13" onload="actualizacion_iframe(this)"></iframe>
+<div id="content-tarea" style="width:500px;">
+
+</div>
 <video
     id="my-player"
     class="video-js"
@@ -28,13 +30,6 @@
 </video>
 <div id="transcript">
 </div>
-<script id="prueba" type="text/javascript">
-  var scriptTag = "<script>var page=document.getElementById('page'); var page_content = document.getElementById('region-main'); console.log(page_content); page.innerHTML=page_content.outerHTML<";
-  scriptTag +=  "/script>";
-  actualizacion_iframe= function(){
-    $("#iframe-forum").contents().find('body').append(scriptTag);
-  }
-</script>
 {{#js}}
 var video = videojs('my-player');
 console.log(document.querySelector('#transcript'));
@@ -46,4 +41,9 @@ var transcript = video.transcript(options);
 // Then attach the widget to the page.
 var transcriptContainer = document.querySelector('#transcript');
 transcriptContainer.appendChild(transcript.el());
+$.get( "http://localhost:8081/moodle/mod/assign/view.php?id=17&action=editsubmission", function( data ) {
+  var result=$(data).find("#region-main")[0];
+  console.log(result);
+  $("#content-tarea").html($(result).html());
+});
 {{/js}}
