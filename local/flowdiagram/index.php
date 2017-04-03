@@ -25,8 +25,23 @@
  */
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
+
+$id = required_param('id', PARAM_INT);
+$PAGE->set_url('/local/flowdiagram/index.php', array('id'=>$id));
+if (!$course = $DB->get_record('course', array('id' => $id))) {
+    print_error('invalidcourseid');
+}
+$coursecontext = context_course::instance($id);
+require_login($course);
 // Setting context for the page.
-$PAGE->set_context(context_system::instance());
+$PAGE->set_context($coursecontext);
+global $COURSE,$USER;
+$context = get_context_instance(CONTEXT_COURSE,$COURSE->id);
+if ($roles = get_user_roles($context, $USER->id)) {
+foreach ($roles as $role) {
+  print_object($role);
+}
+}
 // URL is created and then set for the page navigation.
 // Heading, headers, page layout.
 $PAGE->set_title('Flow Diagram');
