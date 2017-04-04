@@ -25,8 +25,26 @@
  */
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
+$id = required_param('id', PARAM_INT);
+$PAGE->set_url('/local/estrategia_didactica/index.php', array('id'=>$id));
+if (!$course = $DB->get_record('course', array('id' => $id))) {
+    print_error('invalidcourseid');
+}
+$coursecontext = context_course::instance($id);
+require_login($course);
 // Setting context for the page.
-$PAGE->set_context(context_system::instance());
+$PAGE->set_context($coursecontext);
+global $COURSE,$USER;
+//Obtner el rol del usuario
+/*$context = get_context_instance(CONTEXT_COURSE,$COURSE->id);
+if ($roles = get_user_roles($context, $USER->id)) {
+foreach ($roles as $role) {
+  print_object($role);
+}
+}*/
+$video=$DB->get_record('video_components',array('id'=>1));
+$actividades = getActivities($USER->id,$COURSE->id);
+print_object($actividades);
 // URL is created and then set for the page navigation.
 // Heading, headers, page layout.
 $PAGE->set_title('Flow Diagram');
@@ -43,7 +61,6 @@ $PAGE->requires->js(new moodle_url('/local/estrategia_didactica/js/app.js'),true
 echo $OUTPUT->header();
 // Displaying basic content.
 //$OUTPUT->content='<h1>Hola esta es la actividad de formacion</h1>';
-
-echo $OUTPUT->render_from_template('local_estrategia_didactica/actividad_formacion_v1', context_system::instance());
+echo $OUTPUT->render_from_template('local_estrategia_didactica/actividad_formacion_v1', $video);
 // Display the footer.
 echo $OUTPUT->footer();

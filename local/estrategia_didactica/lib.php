@@ -31,3 +31,12 @@ $nodeVaribilidaddes=$nodeBar->add('Variabilidad1',new moodle_url('/local/estrate
 $nodeVaribilidaddes=$nodeBar->add('Variabilidad2',new moodle_url('/local/estrategia_didactica/variabilidad2.php'));
 $nodeVaribilidaddes=$nodeBar->add('PruebaQuiz',new moodle_url('/local/estrategia_didactica/variabilidad2.php'));
 }
+function getEstrategiaDidactica($userid, $courseid){
+  global $DB;
+  return $DB->get_record('assigneducational_strategy', array('userid'=>$userid,'courseid'=>$courseid));
+}
+function getActivities($userid, $courseid){
+  global $DB;
+  $estrategia_didactica = getEstrategiaDidactica($userid,$courseid);
+  return $DB->get_records('activities', array('educational_strategy_id'=>$estrategia_didactica->educational_strategy_id));
+}

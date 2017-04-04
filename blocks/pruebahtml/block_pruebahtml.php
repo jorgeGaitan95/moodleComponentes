@@ -37,7 +37,7 @@ class block_pruebahtml extends block_base {
       $this->content         =  new stdClass;
       $this->content->text   = 'Prueba para añadir un pligin tipo block dentro de moodle!';
       $url = new moodle_url('/local/estrategia_didactica/index.php', array('id' => $this->page->course->id));
-      $this->content->text .='<p><a href="/moodle/local/flowdiagram/index.php">hola</a></p>';
+      $this->content->text .='<p><a href="/moodle/local/flowdiagram/index.php?id=3">hola</a></p>';
       $this->content->footer = html_writer::link($url,"Estrategia Didactica");
 
       return $this->content;
