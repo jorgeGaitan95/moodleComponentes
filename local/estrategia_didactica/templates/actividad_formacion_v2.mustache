@@ -5,52 +5,55 @@
   <span>Descripcion:</span>
   <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
 </p>
-<div class="container">
-  <video
-      id="my-player"
-      class="video-js"
-      controls
-      width="600"
-      height="300"
-      preload="auto"
-      data-setup='{"playbackRates": [1, 1.5, 2]}'>
+<div class="container" style="margin-left:0">
+  <div style="float:left">
+    <video
+        id="my-player"
+        class="video-js"
+        controls
+        width="600"
+        height="300"
+        preload="auto"
+        data-setup='{"playbackRates": [1, 1.5, 2]}'>
 
-      <source data-res="144" src="media/identidades.mp4" type="video/mp4" label='144'/>
-      <track src="media/subs_en.vtt" srclang="en" label="English" kind="subtitles" type="text/vtt">
-      <track src="media/subs_es.vtt" srclang="es" label="Spanish" kind="subtitles" type="text/vtt">
-      <p class="vjs-no-js">
-        To view this video please enable JavaScript, and consider upgrading to a
-        web browser that
-        <a href="http://videojs.com/html5-video-support/" target="_blank">
-          supports HTML5 video
-        </a>
-      </p>
-  </video>
-  <div id="transcript">
-  </div>
-</div>
-<div id="pdf-view">
-  <div id="titlebar">
-    <div id="documentName">prueba.pdf</div>
-  </div>
-  <div id="canvasContainer">
-    <canvas id="the-canvas"></canvas>
-  </div>
-  <div id="toolbarContainer">
-    <div id="toolbar">
-      <div id="toolbarLeft">
-        <div id="navButtons" class="splitToolbarButton">
-          <button id="prev" class="toolbarButton pageUp" title="Previous Page"></button>
-          <div class="splitToolbarButtonSeparator"></div>
-            <button id="next" class="toolbarButton pageDown" title="Next Page"></button>
-        </div>
-        <label id="pageNumberLabel" class="toolbarLabel" for="pageNumber">Pagina:</label>
-        <input type="text" id="page_num" onkeypress="runScript(event)" class="toolbarField pageNumber">
-        <span class="toolbarLabel"> de <span id="page_count" class="toolbarLabel"></span></span>
-      </div>
+        <source data-res="144" src="{{components.video.videourl}}" type="video/mp4" label='144'/>
+        <track src="media/subs_en.vtt" srclang="en" label="English" kind="subtitles" type="text/vtt">
+        <track src="media/subs_es.vtt" srclang="es" label="Spanish" kind="subtitles" type="text/vtt">
+        <p class="vjs-no-js">
+          To view this video please enable JavaScript, and consider upgrading to a
+          web browser that
+          <a href="http://videojs.com/html5-video-support/" target="_blank">
+            supports HTML5 video
+          </a>
+        </p>
+    </video>
+    <div id="transcript">
     </div>
   </div>
- </div>
+  <div id="pdf-view">
+    <div id="titlebar">
+      <div id="documentName">prueba.pdf</div>
+    </div>
+    <div id="canvasContainer">
+      <canvas id="the-canvas"></canvas>
+    </div>
+    <div id="toolbarContainer">
+      <div id="toolbar">
+        <div id="toolbarLeft">
+          <div id="navButtons" class="splitToolbarButton">
+            <button id="prev" class="toolbarButton pageUp" title="Previous Page"></button>
+            <div class="splitToolbarButtonSeparator"></div>
+              <button id="next" class="toolbarButton pageDown" title="Next Page"></button>
+          </div>
+          <label id="pageNumberLabel" class="toolbarLabel" for="pageNumber">Pagina:</label>
+          <input type="text" id="page_num" onkeypress="runScript(event)" class="toolbarField pageNumber">
+          <span class="toolbarLabel"> de <span id="page_count" class="toolbarLabel"></span></span>
+        </div>
+      </div>
+    </div>
+   </div>
+</div>
+
 {{#js}}
 var video = videojs('my-player');
 console.log(document.querySelector('#transcript'));
@@ -68,7 +71,7 @@ transcriptContainer.appendChild(transcript.el());
 
 // If absolute URL from the remote server is provided, configure the CORS
 // header on that server.
-var url = 'presentacion/identidades.pdf';
+var url = '{{components.presentacion.viewerurl}}';
 
 // The workerSrc property shall be specified.
 PDFJS.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';

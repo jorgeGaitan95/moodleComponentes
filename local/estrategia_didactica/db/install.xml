@@ -29,7 +29,7 @@
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="educational_strategy_id" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="name" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
-        <FIELD NAME="message" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="description" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
@@ -38,60 +38,149 @@
         <INDEX NAME="educational_strategy_id" UNIQUE="false" FIELDS="educational_strategy_id"/>
       </INDEXES>
     </TABLE>
-    <TABLE NAME="quiz_components" COMMENT="representa una referencia a un quiz">
+    <TABLE NAME="template" COMMENT="representas todas las plantillas para renderizar la informacion">
       <FIELDS>
-        <FIELD NAME="activitiesid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="quizid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="templatename" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
       </FIELDS>
       <KEYS>
-        <KEY NAME="activitiesid" TYPE="foreign" FIELDS="activitiesid" REFTABLE="activities" REFFIELDS="id"/>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="template_activities" COMMENT="Plantillas Asignadas a un a actividad">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="activitiesid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="templateid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="active" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="activitiesid" UNIQUE="false" FIELDS="activitiesid"/>
+        <INDEX NAME="templateid" UNIQUE="false" FIELDS="templateid"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="type_components" COMMENT="Enumeracion con los tipos de coponentes que pueden contener una tempalte">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="name" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="template_components" COMMENT="Representa los tipos de compoenentes que contiene un template">
+      <FIELDS>
+        <FIELD NAME="typecomponentsid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="templateid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="typecomponentsid" TYPE="foreign" FIELDS="typecomponentsid" REFTABLE="type_components" REFFIELDS="id"/>
+        <KEY NAME="templateid" TYPE="foreign" FIELDS="templateid" REFTABLE="template" REFFIELDS="id"/>
+      </KEYS>
+    </TABLE>
+    <TABLE NAME="components" COMMENT="Representa los componentes presentes en un template asiganda a un actividad">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="template_activities_id" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="typecomponents_id" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="template_activities_id" UNIQUE="false" FIELDS="template_activities_id"/>
+        <INDEX NAME="typecomponents_id" UNIQUE="false" FIELDS="typecomponents_id"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="quiz_components" COMMENT="representa una referencia a un quiz">
+      <FIELDS>
+        <FIELD NAME="quizid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="idcomponent" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
         <KEY NAME="quizid" TYPE="foreign" FIELDS="quizid" REFTABLE="quiz" REFFIELDS="id"/>
       </KEYS>
+      <INDEXES>
+        <INDEX NAME="idcomponent" UNIQUE="false" FIELDS="idcomponent"/>
+      </INDEXES>
     </TABLE>
     <TABLE NAME="forum_components" COMMENT="representa una referencia a un foro">
       <FIELDS>
-        <FIELD NAME="activitiesid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="forumid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="idcomponent" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
       </FIELDS>
       <KEYS>
-        <KEY NAME="activitiesid" TYPE="foreign" FIELDS="activitiesid" REFTABLE="activities" REFFIELDS="id"/>
         <KEY NAME="forumid" TYPE="foreign" FIELDS="forumid" REFTABLE="forum" REFFIELDS="id"/>
       </KEYS>
+      <INDEXES>
+        <INDEX NAME="idcomponent" UNIQUE="false" FIELDS="idcomponent"/>
+      </INDEXES>
     </TABLE>
     <TABLE NAME="chat_components" COMMENT="representa una referencia a un chat">
       <FIELDS>
-        <FIELD NAME="activitiesid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="chatid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="idcomponent" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
       </FIELDS>
       <KEYS>
-        <KEY NAME="activitiesid" TYPE="foreign" FIELDS="activitiesid" REFTABLE="activities" REFFIELDS="id"/>
         <KEY NAME="chatid" TYPE="foreign" FIELDS="chatid" REFTABLE="chat" REFFIELDS="id"/>
       </KEYS>
-    </TABLE>
-    <TABLE NAME="video_components" COMMENT="Actividades de la Estrategia Educativa">
-      <FIELDS>
-        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="activitiesid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
-        <FIELD NAME="videourl" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
-      </FIELDS>
-      <KEYS>
-        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-      </KEYS>
       <INDEXES>
-        <INDEX NAME="activitiesid" UNIQUE="false" FIELDS="activitiesid"/>
+        <INDEX NAME="idcomponent" UNIQUE="false" FIELDS="idcomponent"/>
       </INDEXES>
     </TABLE>
-    <TABLE NAME="viewer_components" COMMENT="Actividades de la Estrategia Educativa">
+    <TABLE NAME="assign_components" COMMENT="representa una referencia a una tarea">
+      <FIELDS>
+        <FIELD NAME="assignid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="idcomponent" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="assignid" TYPE="foreign" FIELDS="assignid" REFTABLE="assign" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="idcomponent" UNIQUE="false" FIELDS="idcomponent"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="video" COMMENT="Componente Video">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-        <FIELD NAME="activitiesid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="idcomponent" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
         <FIELD NAME="videourl" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
       </FIELDS>
       <KEYS>
         <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
       </KEYS>
       <INDEXES>
-        <INDEX NAME="activitiesid" UNIQUE="false" FIELDS="activitiesid"/>
+        <INDEX NAME="idcomponent" UNIQUE="false" FIELDS="idcomponent"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="subtitles" COMMENT="subtitulos de un video">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="videoid" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="url" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="language" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="videoid" UNIQUE="false" FIELDS="videoid"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="viewer" COMMENT="Componente Presentacion">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="idcomponent" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="viewerurl" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="idcomponent" UNIQUE="false" FIELDS="idcomponent"/>
       </INDEXES>
     </TABLE>
   </TABLES>

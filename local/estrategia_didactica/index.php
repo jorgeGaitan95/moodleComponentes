@@ -26,12 +26,15 @@
 require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
 require_once(dirname(__FILE__).'/lib.php');
 $id = required_param('id', PARAM_INT);
+$activityid = required_param('activityid', PARAM_INT);
 $PAGE->set_url('/local/estrategia_didactica/index.php', array('id'=>$id));
 if (!$course = $DB->get_record('course', array('id' => $id))) {
     print_error('invalidcourseid');
 }
 $coursecontext = context_course::instance($id);
 require_login($course);
+$urlpage=new moodle_url('/local/estrategia_didactica/index.php', array('id'=>$activityid));
+
 // Setting context for the page.
 $PAGE->set_context($coursecontext);
 global $COURSE,$USER;
@@ -42,9 +45,16 @@ foreach ($roles as $role) {
   print_object($role);
 }
 }*/
-$video=$DB->get_record('video_components',array('id'=>1));
+$PAGE->set_url($urlpage);
+$templatename=getTemplateName($activityid);
+print_object($templatename);
+$video=$DB->get_record('video',array('id'=>1));
 $actividades = getActivities($USER->id,$COURSE->id);
-print_object($actividades);
+$components = getComponents($activityid);
+$data=(object)array();
+$data->activities=$actividades;
+$data->components=$components;
+//print_object($actividades);
 // URL is created and then set for the page navigation.
 // Heading, headers, page layout.
 $PAGE->set_title('Flow Diagram');
@@ -57,10 +67,20 @@ $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/video-js.
 $PAGE->requires->js(new moodle_url('/media/player/videojs/amd/build/video-lazy.min.js'),true);
 $PAGE->requires->js(new moodle_url('/local/estrategia_didactica/js/videojs-transcript.js'),true);
 $PAGE->requires->js(new moodle_url('/local/estrategia_didactica/js/jquery.min.js'),true);
+$PAGE->requires->js(new moodle_url('/local/estrategia_didactica/js/pdf.js'),true);
 $PAGE->requires->js(new moodle_url('/local/estrategia_didactica/js/app.js'),true);
 echo $OUTPUT->header();
 // Displaying basic content.
 //$OUTPUT->content='<h1>Hola esta es la actividad de formacion</h1>';
-echo $OUTPUT->render_from_template('local_estrategia_didactica/actividad_formacion_v1', $video);
+
+
+//echo $OUTPUT->render_from_template('local_estrategia_didactica/actividad_formacion_v1', $video);
+$asha= (object) array('tabs' => []);
+$asha->tabs=array(
+  array('id' => 'tab1','name' => 'Tab 1', 'content' => 'This is tab 1 content <a href=\"#\">test</a>' ),
+  array('id' => 'tab2','name' => 'Tab 2', 'content' => 'This is tab 2 content <a href=\"#\">test</a>' ),
+  array('id' => 'tab3','name' => 'Tab 3', 'content' => 'This is tab 3 content <a href=\"#\">test</a>' )
+);
+echo $OUTPUT->render_from_template('local_estrategia_didactica/'.$templatename, $data);
 // Display the footer.
 echo $OUTPUT->footer();

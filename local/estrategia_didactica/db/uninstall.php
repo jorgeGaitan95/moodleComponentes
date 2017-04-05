@@ -29,8 +29,8 @@ defined('MOODLE_INTERNAL') || die();
  *
  * @return bool true if success
  */
-function xmldb_local_smart_klass_uninstall() {
+function xmldb_local_estrategia_didactica_uninstall() {
     global $DB;
-    
+
     return true;
 }

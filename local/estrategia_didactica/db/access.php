@@ -36,7 +36,7 @@ $capabilities = array(
         ),
         'clonepermissionsfrom' => 'moodle/course:manageactivities'
     ),
-    
+
     'local/estrategia_didactica:view' => array(
         'captype' => 'read',
         'contextlevel' => CONTEXT_SYSTEM,

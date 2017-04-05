@@ -30,7 +30,7 @@ defined('MOODLE_INTERNAL') || die();
  * @param int $oldversion
  * @return bool
  */
-function xmldb_local_smart_klass_upgrade($oldversion) {
+function xmldb_local_estrategia_didactica_upgrade($oldversion) {
     global $CFG, $DB;
 
     return true;
