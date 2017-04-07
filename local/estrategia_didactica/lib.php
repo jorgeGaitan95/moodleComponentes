@@ -72,7 +72,68 @@ function getComponents($activitiesid){
       $presentacion=$DB->get_record('viewer', array('idcomponent'=>$component->id));
       $data->presentacion=$presentacion;
     }
+    if($component->typecomponents_id==6){
+      $repository=listarArchivos('25');
+      $data->repository=$repository;
+    }
     //TODO: completar con los demás elementos
   }
   return $data;
+}
+function local_estrategia_didactica_pluginfile($course, $context, $filearea, $args, $forcedownload){
+  $out = array();
+
+  $fs= get_file_storage();
+  $files = $fs->get_area_files($context->id, 'local_estrategia_didactica', 'repository');
+  foreach ($files as $file) {
+    $filename = $file->get_filename();
+    $url = moodle_url::make_file_url('/pluginfile.php', array($file->get_contextid(), $file->get_component(), $file->get_filearea(),
+            $file->get_itemid(), $file->get_filepath(), $filename));
+    $out[] = html_writer::link($url, $filename);
+  }
+
+  $br = html_writer::empty_tag('br');
+  return implode($br, $out);
+}
+function createFile($contextid,$filepath){
+  $fs= get_file_storage();
+  $fileinfo = array(
+    'contextid' => $contextid,
+    'component' => 'local_estrategia_didactica',
+    'filearea' => 'repository',
+    'itemid' => 0,
+    'filepath' => '/',
+    'filename' => 'a.pdf');
+  $fs->create_file_from_pathname($fileinfo,$filepath);
+  print_object($fs);
+
+  //READ FILES
+
+  // Get file
+  $file = $fs->get_file($fileinfo['contextid'], $fileinfo['component'], $fileinfo['filearea'],
+                        $fileinfo['itemid'], $fileinfo['filepath'], $fileinfo['filename']);
+
+  // Read contents
+  if ($file) {
+      $contents = $file->get_content();
+      print_object($contents);
+  } else {
+      // file doesn't exist - do something
+      echo "el archivo no existe";
+  }
+}
+function listarArchivos($contextid){
+  $out = array();
+
+  $fs= get_file_storage();
+  $files = $fs->get_area_files($contextid, 'local_estrategia_didactica', 'repository');
+  foreach ($files as $file) {
+    $filename = $file->get_filename();
+    $url = moodle_url::make_file_url('/pluginfile.php', array($file->get_contextid(), $file->get_component(), $file->get_filearea(),
+            $file->get_itemid(), $file->get_filepath(), $filename));
+    $out[] = html_writer::link($url, $filename);
+  }
+
+  $br = html_writer::empty_tag('br');
+  return implode($br, $out);
 }

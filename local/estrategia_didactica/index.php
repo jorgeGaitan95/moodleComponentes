@@ -47,7 +47,6 @@ foreach ($roles as $role) {
 }*/
 $PAGE->set_url($urlpage);
 $templatename=getTemplateName($activityid);
-print_object($templatename);
 $video=$DB->get_record('video',array('id'=>1));
 $actividades = getActivities($USER->id,$COURSE->id);
 $components = getComponents($activityid);
@@ -81,6 +80,11 @@ $asha->tabs=array(
   array('id' => 'tab2','name' => 'Tab 2', 'content' => 'This is tab 2 content <a href=\"#\">test</a>' ),
   array('id' => 'tab3','name' => 'Tab 3', 'content' => 'This is tab 3 content <a href=\"#\">test</a>' )
 );
+//obtener la lista de archivos en el repositorio
+//$ass=local_estrategia_didactica_pluginfile($COURSE,$coursecontext,'repository',null,0);
+print_object($data);
+$filepath = $CFG->dirroot.'/local/estrategia_didactica/presentacion/a.pdf';
+//createFile($coursecontext->id,$filepath);
 echo $OUTPUT->render_from_template('local_estrategia_didactica/'.$templatename, $data);
 // Display the footer.
 echo $OUTPUT->footer();
