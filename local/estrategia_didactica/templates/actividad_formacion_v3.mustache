@@ -15,10 +15,10 @@
 </div>
 <!--{{> local_estrategia_didactica/prueba }}-->
 <video
+    style="width:100%;"
     id="my-player"
     class="video-js"
     controls
-    width="600"
     height="300"
     preload="auto"
     data-setup='{"playbackRates": [1, 1.5, 2]}'>
@@ -33,15 +33,15 @@
       </a>
     </p>
 </video>
-<div id="transcript">
+<div id="transcript" style="margin-top:10px;width:49%;margin-right:2%;float:left;">
 </div>
-<script id="prueba" type="text/javascript">
-  var scriptTag = "<script>var page=document.getElementById('page'); var page_content = document.getElementById('region-main'); console.log(page_content); page.innerHTML=page_content.outerHTML<";
-  scriptTag +=  "/script>";
-  actualizacion_iframe= function(){
-    $("#iframe-forum").contents().find('body').append(scriptTag);
-  }
-</script>
+<div style="float: left;
+    width: 49%;
+    margin-top: 50px;
+    height: 207px;">
+    
+
+</div>
 {{#js}}
 var video = videojs('my-player');
 console.log(document.querySelector('#transcript'));

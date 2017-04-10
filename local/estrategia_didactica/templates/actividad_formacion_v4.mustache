@@ -13,12 +13,11 @@
   </p>
 </div>
 <div class="container" style="margin-left:0">
-  <div style="float:left">
-    <video
+  <div style="float:left; width:49%; margin-right:2%;">
+    <video style="width:100%"
         id="my-player"
         class="video-js"
         controls
-        width="500"
         height="300"
         preload="auto"
         data-setup='{"playbackRates": [1, 1.5, 2]}'>
@@ -34,31 +33,43 @@
           </a>
         </p>
     </video>
-    <div id="transcript">
+    <div id="transcript" style="width:100%">
     </div>
   </div>
-  <div id="pdf-view">
-    <div id="titlebar">
-      <div id="documentName">prueba.pdf</div>
-    </div>
-    <div id="canvasContainer">
-      <canvas id="the-canvas"></canvas>
-    </div>
-    <div id="toolbarContainer">
-      <div id="toolbar">
-        <div id="toolbarLeft">
-          <div id="navButtons" class="splitToolbarButton">
-            <button id="prev" class="toolbarButton pageUp" title="Previous Page"></button>
-            <div class="splitToolbarButtonSeparator"></div>
-              <button id="next" class="toolbarButton pageDown" title="Next Page"></button>
+  <div style="float:left; width:49%;">
+    <div id="pdf-view" style="float:none;margin-left:0;">
+      <div id="titlebar">
+        <div id="documentName">prueba.pdf</div>
+      </div>
+      <div id="canvasContainer">
+        <canvas id="the-canvas"></canvas>
+      </div>
+      <div id="toolbarContainer">
+        <div id="toolbar">
+          <div id="toolbarLeft">
+            <div id="navButtons" class="splitToolbarButton">
+              <button id="prev" class="toolbarButton pageUp" title="Previous Page"></button>
+              <div class="splitToolbarButtonSeparator"></div>
+                <button id="next" class="toolbarButton pageDown" title="Next Page"></button>
+            </div>
+            <label id="pageNumberLabel" class="toolbarLabel" for="pageNumber">Pagina:</label>
+            <input type="text" id="page_num" onkeypress="runScript(event)" class="toolbarField pageNumber">
+            <span class="toolbarLabel"> de <span id="page_count" class="toolbarLabel"></span></span>
           </div>
-          <label id="pageNumberLabel" class="toolbarLabel" for="pageNumber">Pagina:</label>
-          <input type="text" id="page_num" onkeypress="runScript(event)" class="toolbarField pageNumber">
-          <span class="toolbarLabel"> de <span id="page_count" class="toolbarLabel"></span></span>
         </div>
       </div>
+     </div>
+    <div style="width: 100%;
+      margin-top: 36px;
+      height: 203px;
+      float: left;
+      height: 207px;
+      padding: 25px;
+      box-sizing: border-box;
+      border: 1px solid #e0e0e0;">
+      {{{components.repository}}}
     </div>
-   </div>
+  </div>
 </div>
 
 {{#js}}

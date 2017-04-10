@@ -42,7 +42,6 @@ function getActivities($userid, $courseid){
   $result= $DB->get_records('activities', array('educational_strategy_id'=>$estrategia_didactica->educational_strategy_id));
   foreach ($result as $activity) {
     $url= new moodle_url('/local/estrategia_didactica/index.php',array('id' => 3,'activityid'=>$activity->id));
-    echo html_writer::link($url,$activity->id);
     $aux= array('id' => $activity->id ,'url' =>$url,'name' => $activity->name,'description'=>$activity->description);
     array_push($activities,$aux);
     //print_object($aux);
@@ -87,8 +86,7 @@ function local_estrategia_didactica_pluginfile($course, $context, $filearea, $ar
   $files = $fs->get_area_files($context->id, 'local_estrategia_didactica', 'repository');
   foreach ($files as $file) {
     $filename = $file->get_filename();
-    $url = moodle_url::make_file_url('/pluginfile.php', array($file->get_contextid(), $file->get_component(), $file->get_filearea(),
-            $file->get_itemid(), $file->get_filepath(), $filename));
+    $url = moodle_url::make_pluginfile_url(25,'course','educational',6,'/','a.pdf',false);
     $out[] = html_writer::link($url, $filename);
   }
 
@@ -98,15 +96,15 @@ function local_estrategia_didactica_pluginfile($course, $context, $filearea, $ar
 function createFile($contextid,$filepath){
   $fs= get_file_storage();
   $fileinfo = array(
-    'contextid' => $contextid,
-    'component' => 'local_estrategia_didactica',
-    'filearea' => 'repository',
-    'itemid' => 0,
+    'contextid' => 25,
+    'component' => 'course',
+    'filearea' => 'educational',
+    'itemid' => 6,
     'filepath' => '/',
     'filename' => 'a.pdf');
   $fs->create_file_from_pathname($fileinfo,$filepath);
   print_object($fs);
-
+/*
   //READ FILES
 
   // Get file
@@ -120,20 +118,32 @@ function createFile($contextid,$filepath){
   } else {
       // file doesn't exist - do something
       echo "el archivo no existe";
-  }
+  }*/
 }
 function listarArchivos($contextid){
   $out = array();
-
   $fs= get_file_storage();
   $files = $fs->get_area_files($contextid, 'local_estrategia_didactica', 'repository');
   foreach ($files as $file) {
+    $type=$file->get_mimetype();
+    $ulrImg;
+    switch ($type) {
+      case 'application/pdf':
+        $urlImg= new moodle_url('/local/estrategia_didactica/img/pdf-24.png');
+        break;
+      case 'text/plain':
+        $urlImg= new moodle_url('/local/estrategia_didactica/img/text-24.png');
+        break;
+      default:
+        $urlImg='a';
+        break;
+    }
     $filename = $file->get_filename();
-    $url = moodle_url::make_file_url('/pluginfile.php', array($file->get_contextid(), $file->get_component(), $file->get_filearea(),
-            $file->get_itemid(), $file->get_filepath(), $filename));
-    $out[] = html_writer::link($url, $filename);
+    $url = moodle_url::make_pluginfile_url(25,'course','educational',6,'/','a.pdf',false);
+    $s .= html_writer::start_tag('div',array('class' => 'repositoryrow'));
+    $s .=html_writer::img($urlImg, 'class');
+    $s .= html_writer::link($url, $filename);
+    $s .= html_writer::end_tag('div');
   }
-
-  $br = html_writer::empty_tag('br');
-  return implode($br, $out);
+  return $s;
 }

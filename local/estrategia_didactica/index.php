@@ -56,8 +56,7 @@ $data->components=$components;
 //print_object($actividades);
 // URL is created and then set for the page navigation.
 // Heading, headers, page layout.
-$PAGE->set_title('Flow Diagram');
-$PAGE->set_heading('Flow Diagram Prueba');
+$PAGE->set_title('Estrategia Didactica');
 $PAGE->set_pagelayout('standard');
 $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/style.css'),true);
 $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/videojs-transcript.css'),true);
@@ -82,7 +81,8 @@ $asha->tabs=array(
 );
 //obtener la lista de archivos en el repositorio
 //$ass=local_estrategia_didactica_pluginfile($COURSE,$coursecontext,'repository',null,0);
-print_object($data);
+//echo $ass;
+//print_object($data);
 $filepath = $CFG->dirroot.'/local/estrategia_didactica/presentacion/a.pdf';
 //createFile($coursecontext->id,$filepath);
 echo $OUTPUT->render_from_template('local_estrategia_didactica/'.$templatename, $data);
