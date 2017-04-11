@@ -14,26 +14,28 @@
   </p>
 </div>
 <!--{{> local_estrategia_didactica/prueba }}-->
-<video
-    id="my-player"
-    class="video-js"
-    controls
-    width="600"
-    height="300"
-    preload="auto"
-    data-setup='{"playbackRates": [1, 1.5, 2]}'>
-    <source data-res="144" src="{{components.video.videourl}}" type="video/mp4" label='144'/>
-    <track src="media/subs_en.vtt" srclang="en" label="English" kind="subtitles" type="text/vtt">
-    <track src="media/subs_es.vtt" srclang="es" label="Spanish" kind="subtitles" type="text/vtt">
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a
-      web browser that
-      <a href="http://videojs.com/html5-video-support/" target="_blank">
-        supports HTML5 video
-      </a>
-    </p>
-</video>
-<div id="transcript">
+<div style="width:600px;margin:auto;">
+  <video
+      id="my-player"
+      style="margin:auto;width:100%;"
+      class="video-js"
+      controls
+      height="300"
+      preload="auto"
+      data-setup='{"playbackRates": [1, 1.5, 2]}'>
+      <source data-res="144" src="{{components.video.videourl}}" type="video/mp4" label='144'/>
+      <track src="media/subs_en.vtt" srclang="en" label="English" kind="subtitles" type="text/vtt">
+      <track src="media/subs_es.vtt" srclang="es" label="Spanish" kind="subtitles" type="text/vtt">
+      <p class="vjs-no-js">
+        To view this video please enable JavaScript, and consider upgrading to a
+        web browser that
+        <a href="http://videojs.com/html5-video-support/" target="_blank">
+          supports HTML5 video
+        </a>
+      </p>
+  </video>
+  <div id="transcript" style="width:100%;margin:auto; margin-top: 15px;">
+  </div>
 </div>
 <script id="prueba" type="text/javascript">
   var scriptTag = "<script>var page=document.getElementById('page'); var page_content = document.getElementById('region-main'); console.log(page_content); page.innerHTML=page_content.outerHTML<";

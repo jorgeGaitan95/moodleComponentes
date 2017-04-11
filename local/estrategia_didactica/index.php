@@ -57,7 +57,7 @@ $data->components=$components;
 // URL is created and then set for the page navigation.
 // Heading, headers, page layout.
 $PAGE->set_title('Estrategia Didactica');
-$PAGE->set_pagelayout('standard');
+$PAGE->set_pagelayout('base');
 $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/style.css'),true);
 $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/videojs-transcript.css'),true);
 $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/prueba.css'),true);
@@ -73,12 +73,6 @@ echo $OUTPUT->header();
 
 
 //echo $OUTPUT->render_from_template('local_estrategia_didactica/actividad_formacion_v1', $video);
-$asha= (object) array('tabs' => []);
-$asha->tabs=array(
-  array('id' => 'tab1','name' => 'Tab 1', 'content' => 'This is tab 1 content <a href=\"#\">test</a>' ),
-  array('id' => 'tab2','name' => 'Tab 2', 'content' => 'This is tab 2 content <a href=\"#\">test</a>' ),
-  array('id' => 'tab3','name' => 'Tab 3', 'content' => 'This is tab 3 content <a href=\"#\">test</a>' )
-);
 //obtener la lista de archivos en el repositorio
 //$ass=local_estrategia_didactica_pluginfile($COURSE,$coursecontext,'repository',null,0);
 //echo $ass;

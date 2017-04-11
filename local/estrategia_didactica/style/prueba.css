@@ -20,8 +20,7 @@ h1{
   color: #2b333f;
 }
 #pdf-view{
-  float:left;
-  margin-left:20px;
+  width: 100%;
   border-width: 2px;
   border-style: inset;
   border-color: initial;
@@ -214,6 +213,7 @@ label.toolbarLabel{
 /*Campo de Busqueda trasncripcion*/
 #query{
   background: #e4e4e4;
+  margin-bottom: 4px;
   padding:6px;
   border-radius:5px 0 0 5px;
   -moz-border-radius:5px 0 0 5px;
@@ -222,8 +222,9 @@ label.toolbarLabel{
   border:0 none;
   width:200px;
 }
-.queryButton{
+.transcriptqueryButton{
   margin-left: 0 !important;
+  margin-bottom: 4px !important;
   background:rgba(15, 39, 158, 0.819608);
   color:white;
   font: 'trebuchet ms', trebuchet;
@@ -236,11 +237,18 @@ label.toolbarLabel{
   font-weight:bold;
   text-shadow: none;
 }
+.transcript-options{
+  display: inline-block;
+}
 .searchBox{
-  margin-top: 16px;
+  margin-top: 15px;
 }
 
 .highlight{
   background: #ffff00;
   font-weight: bold;
+}
+
+.repositoryrow{
+  margin-bottom: 10px;
 }

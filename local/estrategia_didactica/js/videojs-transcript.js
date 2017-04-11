@@ -355,6 +355,21 @@ var widget = function (plugin) {
     });
     return selector;
   };
+  var createSearchBox = function () {
+    var div = utils.createEl('div', '-options');
+    var inputSearch = utils.createEl('input','-query');
+    inputSearch.setAttribute('id',"query");
+    inputSearch.setAttribute('placeholder',"Buscar...");
+    var buttonSearch =utils.createEl('button','queryButton',{
+      name:'button',
+      onclick:'buscarPalabra()',
+      style: 'float:right'
+    });
+    buttonSearch.textContent='Buscar';
+    div.appendChild(inputSearch);
+    div.appendChild(buttonSearch);
+    return div;
+  };
   var clickToSeekHandler = function (event) {
     var clickedClasses = event.target.classList;
     var clickedTime = event.target.getAttribute('data-begin') || event.target.parentElement.getAttribute('data-begin');
@@ -420,6 +435,8 @@ var widget = function (plugin) {
     }
     if (plugin.settings.showTrackSelector) {
       var selector = createSelector();
+      var searchBox = createSearchBox();
+      el.appendChild(searchBox);
       el.appendChild(selector);
     }
     my.body = utils.createEl('div', '-body');
