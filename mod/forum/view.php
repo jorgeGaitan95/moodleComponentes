@@ -48,7 +48,7 @@
     $PAGE->set_url('/mod/forum/view.php', $params);
 
     if ($id) {
-      if (! $cm = get_coursemodule_from_id('forum', $id)) {
+        if (! $cm = get_coursemodule_from_id('forum', $id)) {
             print_error('invalidcoursemodule');
         }
         if (! $course = $DB->get_record("course", array("id" => $cm->course))) {
