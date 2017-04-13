@@ -156,6 +156,7 @@ function getForumid($componentid){
   $forum_component=$DB->get_record('forum_components',array('idcomponent'=>$componentid));
   return $forum_component->forumid;
 }
+
 /**
  * Gets a post with all info ready for forum_print_post
  * Most of these joins are just to get the forum id
@@ -251,12 +252,9 @@ function print_discussion($course, $forum, $discussion, $post, $mode, $canreply=
     $postread = !empty($post->postread);
     print_post($post, $discussion, $forum,$course, $ownpost, $reply, false,
                          '', '', $postread, true, $forumtracked);
-
-    print_posts_nested($course, $forum, $discussion, $post, $reply, $forumtracked, $posts);
-    /*switch ($mode) {
+    switch ($mode) {
         case FORUM_MODE_FLATOLDEST :
         case FORUM_MODE_FLATNEWEST :
-        default:
            print_posts_flat($course, $forum, $discussion, $post, $mode, $reply, $forumtracked, $posts);
            break;
 
@@ -267,7 +265,7 @@ function print_discussion($course, $forum, $discussion, $post, $mode, $canreply=
         case FORUM_MODE_NESTED :
           print_posts_nested($course, $forum, $discussion, $post, $reply, $forumtracked, $posts);
           break;
-    }*/
+    }
 }
 /**
  * Tells whether a specific forum is tracked by the user. A user can optionally
@@ -675,7 +673,7 @@ function print_post($post, $discussion, $forum, $course, $ownpost=false, $reply=
       }
   */
       if ($reply) {
-          $commands[] = array('url'=>new moodle_url('/mod/forum/post.php#mformforum', array('reply'=>$post->id)), 'text'=>$str->reply);
+          $commands[] = array('url'=>new moodle_url('/local/estrategia_didactica/post.php#mformforum', array('reply'=>$post->id)), 'text'=>$str->reply);
       }
   /*
       if ($CFG->enableportfolios && ($cm->cache->caps['mod/forum:exportpost'] || ($ownpost && $cm->cache->caps['mod/forum:exportownpost']))) {
@@ -1053,5 +1051,148 @@ function print_posts_nested($course, $forum, $discussion, $parent, $reply, $foru
             print_posts_nested($course, $forum, $discussion, $post, $reply, $forumtracked, $posts);
             echo "</div>\n";
         }
+    }
+}
+/**
+ * Returns array of forum layout modes
+ *
+ * @return array
+ */
+function get_layout_modes() {
+    return array (FORUM_MODE_FLATOLDEST => get_string('modeflatoldestfirst', 'forum'),
+                  FORUM_MODE_FLATNEWEST => get_string('modeflatnewestfirst', 'forum'),
+                  FORUM_MODE_THREADED   => get_string('modethreaded', 'forum'),
+                  FORUM_MODE_NESTED     => get_string('modenested', 'forum'));
+}
+/**
+ * Print the drop down that allows the user to select how they want to have
+ * the discussion displayed.
+ *
+ * @param int $id forum id if $forumtype is 'single',
+ *              discussion id for any other forum type
+ * @param mixed $mode forum layout mode
+ * @param string $forumtype optional
+ */
+function print_mode_form($id, $mode, $forumtype='') {
+    global $OUTPUT;
+    if ($forumtype == 'single') {
+        $select = new single_select(new moodle_url("/local/estrategia_didactica/forumview.php", array('id'=>$id)), 'mode', get_layout_modes(), $mode, null, "mode");
+        $select->set_label(get_string('displaymode', 'forum'), array('class' => 'accesshide'));
+        $select->class = "forummode";
+    }
+    echo $OUTPUT->render($select);
+}
+
+
+// POSTS
+
+function get_post_full_forum($postid) {
+    global $CFG, $DB;
+
+    $allnames = get_all_user_name_fields(true, 'u');
+    return $DB->get_record_sql("SELECT p.*, d.forum, $allnames, u.email, u.picture, u.imagealt
+                             FROM {forum_posts} p
+                                  JOIN {forum_discussions} d ON p.discussion = d.id
+                                  LEFT JOIN {user} u ON p.userid = u.id
+                            WHERE p.id = ?", array($postid));
+}
+
+
+
+/**
+ * This function checks whether the user can reply to posts in a forum
+ * discussion. Use forum_user_can_post_discussion() to check whether the user
+ * can start discussions.
+ *
+ * @global object
+ * @global object
+ * @uses DEBUG_DEVELOPER
+ * @uses CONTEXT_MODULE
+ * @uses VISIBLEGROUPS
+ * @param object $forum forum object
+ * @param object $discussion
+ * @param object $user
+ * @param object $cm
+ * @param object $course
+ * @param object $context
+ * @return bool
+ */
+function user_can_post($forum, $discussion, $user=NULL, $course=NULL, $context=NULL) {
+    global $USER, $DB;
+    if (empty($user)) {
+        $user = $USER;
+    }
+
+    // shortcut - guest and not-logged-in users can not post
+    if (isguestuser($user) or empty($user->id)) {
+        return false;
+    }
+
+    if (!isset($discussion->groupid)) {
+        debugging('incorrect discussion parameter', DEBUG_DEVELOPER);
+        return false;
+    }
+
+    /*if (!$cm) {
+        debugging('missing cm', DEBUG_DEVELOPER);
+        if (!$cm = get_coursemodule_from_instance('forum', $forum->id, $forum->course)) {
+            print_error('invalidcoursemodule');
+        }
+    }*/
+
+    if (!$course) {
+        debugging('missing course', DEBUG_DEVELOPER);
+        if (!$course = $DB->get_record('course', array('id' => $forum->course))) {
+            print_error('invalidcourseid');
+        }
+    }
+
+    if (!$context) {
+        $context = context_course::instance($course->id);
+    }
+
+    // Check whether the discussion is locked.
+    /*if (forum_discussion_is_locked($forum, $discussion)) {
+        if (!has_capability('mod/forum:canoverridediscussionlock', $context)) {
+            return false;
+        }
+    }*/
+
+    // normal users with temporary guest access can not post, suspended users can not post either
+    if (!is_viewing($context, $user->id) and !is_enrolled($context, $user->id, '', true)) {
+        return false;
+    }
+
+    if ($forum->type == 'news') {
+        $capname = 'mod/forum:replynews';
+    } else {
+        $capname = 'mod/forum:replypost';
+    }
+
+    if (!has_capability($capname, $context, $user->id)) {
+        return false;
+    }
+
+    /*if (!$groupmode = groups_get_activity_groupmode($cm, $course)) {
+        return true;
+    }*/
+
+    if (has_capability('moodle/site:accessallgroups', $context)) {
+        return true;
+    }
+
+    if ($groupmode == VISIBLEGROUPS) {
+        if ($discussion->groupid == -1) {
+            // allow students to reply to all participants discussions - this was not possible in Moodle <1.8
+            return true;
+        }
+        return groups_is_member($discussion->groupid);
+
+    } else {
+        //separate groups
+        if ($discussion->groupid == -1) {
+            return false;
+        }
+        return groups_is_member($discussion->groupid);
     }
 }

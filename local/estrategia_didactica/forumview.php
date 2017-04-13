@@ -25,7 +25,8 @@
  */
     require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
     require_once(dirname(__FILE__).'/lib.php');
-    $id= optional_param('id', 0, PARAM_INT);       // Forum ID
+    $id= optional_param('id', 0, PARAM_INT);
+    $mode        = optional_param('mode', 0, PARAM_INT);     // Forum ID
     if($id){
       if (! $forum = $DB->get_record("forum", array("id" => $id))) {
           print_error('invalidforumid', 'forum');
@@ -38,26 +39,34 @@
     }else {
       print_error('missingparameter');
     }
+    global $USER;
     $PAGE->set_title($forum->name);
     $PAGE->add_body_class('forumtype-'.$forum->type);
     $PAGE->add_body_class('path-mod-forum');
     $PAGE->set_pagelayout('base');
+    $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/style.css'),true);
+    $actividades = getActivities($USER->id,$course->id);
+    $data=(object)array();
+    $data->activities=$actividades;
     echo $OUTPUT->header();
+    echo $OUTPUT->render_from_template('local_estrategia_didactica/tabs', $data);
     echo $OUTPUT->heading(format_string($forum->name), 2);
     if ($forum->type == 'single') {
-
-
         $discussion = NULL;
         $discussions = $DB->get_records('forum_discussions', array('forum'=>$forum->id), 'timemodified ASC');
         if (!empty($discussions)) {
             $discussion = array_pop($discussions);
         }
         if ($discussion) {
+            //Muestra las discuciones anidadas por defecto
+            if($mode===0){
+              $mode=3;
+            }//
             if ($mode) {
                 set_user_preference("forum_displaymode", $mode);
             }
             $displaymode = get_user_preferences("forum_displaymode", $CFG->forum_displaymode);
-            forum_print_mode_form($forum->id, $displaymode, $forum->type);
+            print_mode_form($forum->id, $displaymode, $forum->type);
         }
         if (! $post = get_post_full($discussion->firstpost)) {
             print_error('cannotfindfirstpost', 'forum');

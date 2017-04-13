@@ -5687,8 +5687,7 @@ function forum_print_discussion($course, $cm, $forum, $discussion, $post, $mode,
     forum_print_post($post, $discussion, $forum, $cm, $course, $ownpost, $reply, false,
                          '', '', $postread, true, $forumtracked);
 
-    forum_print_posts_threaded($course, $cm, $forum, $discussion, $post, 0, $reply, $forumtracked, $posts);
-    /*switch ($mode) {
+    switch ($mode) {
         case FORUM_MODE_FLATOLDEST :
         case FORUM_MODE_FLATNEWEST :
         default:
@@ -5702,7 +5701,7 @@ function forum_print_discussion($course, $cm, $forum, $discussion, $post, $mode,
         case FORUM_MODE_NESTED :
             forum_print_posts_nested($course, $cm, $forum, $discussion, $post, $reply, $forumtracked, $posts);
             break;
-    }*/
+    }
 }
 
 
