@@ -349,7 +349,6 @@
                                         array()));
 
     if ($mform_post->is_cancelled()) {
-      //TODO:IMportante yo modifique este bloque!! el original esta en el post.php del modulo foro
         if (!isset($discussion->id) || $forum->type === 'qanda') {
             // Q and A forums don't have a discussion page, so treat them like a new thread..
             redirect(new moodle_url('/local/estrategia_didactica/forumview.php', array('id' => $forum->id)));
@@ -439,7 +438,7 @@
                 // Single discussion forums are an exception. We show
                 // the forum itself since it only has one discussion
                 // thread.
-                $discussionurl = new moodle_url("/mod/forum/view.php", array('f' => $forum->id));
+                $discussionurl = new moodle_url("/local/estrategia_didactica/forumview.php", array('id' => $forum->id));
             } else {
                 $discussionurl = new moodle_url("/mod/forum/discuss.php", array('d' => $discussion->id), 'p' . $fromform->id);
             }
@@ -491,7 +490,7 @@
                     // Single discussion forums are an exception. We show
                     // the forum itself since it only has one discussion
                     // thread.
-                    $discussionurl = new moodle_url("/mod/forum/view.php", array('f' => $forum->id), 'p'.$fromform->id);
+                    $discussionurl = new moodle_url("/local/estrategia_didactica/forumview.php", array('id' => $forum->id), 'p'.$fromform->id);
                 } else {
                     $discussionurl = new moodle_url("/mod/forum/discuss.php", array('d' => $discussion->id), 'p'.$fromform->id);
                 }
@@ -672,7 +671,7 @@
 
     $forcefocus = empty($reply) ? NULL : 'message';
 
-    if (!empty($discussion->id)) {
+    /*if (!empty($discussion->id)) {
         $PAGE->navbar->add(format_string($toppost->subject, true), "discuss.php?d=$discussion->id");
     }
 
@@ -682,12 +681,18 @@
 
     if ($edit) {
         $PAGE->navbar->add(get_string('edit', 'forum'));
-    }
+    }*/
 
     $PAGE->set_title("$course->shortname: $strdiscussionname ".format_string($toppost->subject));
     $PAGE->set_heading($course->fullname);
-
+    $PAGE->set_pagelayout('base');
+    $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/style.css'),true);
+    $PAGE->set_context($coursecontext);
+    $actividades = getActivities($USER->id,$course->id);
+    $data=(object)array();
+    $data->activities=$actividades;
     echo $OUTPUT->header();
+    echo $OUTPUT->render_from_template('local_estrategia_didactica/tabs', $data);
     echo $OUTPUT->heading(format_string($forum->name), 2);
 
     // checkup
