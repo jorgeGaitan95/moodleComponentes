@@ -33,8 +33,8 @@ if (!$course = $DB->get_record('course', array('id' => $id))) {
 }
 $coursecontext = context_course::instance($id);
 require_login($course);
-$urlpage=new moodle_url('/local/estrategia_didactica/index.php', array('id'=>$activityid));
-
+$urlpage=new moodle_url('/local/estrategia_didactica/index.php', array('id'=>$activityid,'activityid'=>$activityid));
+$PAGE->navbar->add('Estrategia Didactica');
 // Setting context for the page.
 $PAGE->set_context($coursecontext);
 global $COURSE,$USER;
@@ -46,21 +46,18 @@ foreach ($roles as $role) {
 }
 }*/
 $PAGE->set_url($urlpage);
+//obtine el nombre de la plantilla que debe renderizar
 $templatename=getTemplateName($activityid);
-$video=$DB->get_record('video',array('id'=>1));
-$actividades = getActivities($USER->id,$COURSE->id);
+$actividades = getActivities($USER->id,$COURSE->id,$activityid);
 $components = getComponents($activityid);
 $data=(object)array();
 $data->activities=$actividades;
 $data->components=$components;
-//print_object($actividades);
-// URL is created and then set for the page navigation.
 // Heading, headers, page layout.
 $PAGE->set_title('Estrategia Didactica');
 $PAGE->set_pagelayout('base');
 $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/style.css'),true);
 $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/videojs-transcript.css'),true);
-$PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/prueba.css'),true);
 $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/video-js.min.css'),true);
 $PAGE->requires->js(new moodle_url('/media/player/videojs/amd/build/video-lazy.min.js'),true);
 $PAGE->requires->js(new moodle_url('/local/estrategia_didactica/js/videojs-transcript.js'),true);
@@ -68,15 +65,9 @@ $PAGE->requires->js(new moodle_url('/local/estrategia_didactica/js/jquery.min.js
 $PAGE->requires->js(new moodle_url('/local/estrategia_didactica/js/pdf.js'),true);
 $PAGE->requires->js(new moodle_url('/local/estrategia_didactica/js/app.js'),true);
 echo $OUTPUT->header();
-// Displaying basic content.
-//$OUTPUT->content='<h1>Hola esta es la actividad de formacion</h1>';
-
-
-//echo $OUTPUT->render_from_template('local_estrategia_didactica/actividad_formacion_v1', $video);
 //obtener la lista de archivos en el repositorio
 //$ass=local_estrategia_didactica_pluginfile($COURSE,$coursecontext,'repository',null,0);
 //echo $ass;
-//print_object($data);
 $filepath = $CFG->dirroot.'/local/estrategia_didactica/presentacion/a.pdf';
 //createFile($coursecontext->id,$filepath);
 echo $OUTPUT->render_from_template('local_estrategia_didactica/'.$templatename, $data);

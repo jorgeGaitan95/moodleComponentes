@@ -1,8 +1,4 @@
-<div class="tab">
-  {{#activities}}
-    <button class="tablinks" onclick="window.location.href='{{{url}}}'">Actividad {{id}}</button>
-  {{/activities}}
-</div>
+{{> local_estrategia_didactica/tabs }}
 <div style="margin-bottom:22px;">
   <p >
     <span id="nombre">Nombre Actividad:</span>
@@ -74,16 +70,11 @@
 
 {{#js}}
 var video = videojs('my-player');
-console.log(document.querySelector('#transcript'));
 var options = {
   showTitle: false,
   showTrackSelector: true,
 };
 var transcript = video.transcript(options);
-// Then attach the widget to the page.
-var transcriptContainer = document.querySelector('#transcript');
-transcriptContainer.appendChild(transcript.el());
-
 /*VISUALIZADOR*/
 
 
@@ -192,5 +183,25 @@ function runScript(e) {
 
   }
 }
+video.ready(function() {
+    $("div.vjs-control-bar").css("background-color","rgba(15, 39, 158, 0.82)");
+    $("ul.vjs-menu-content").css("background-color","rgba(15, 39, 158, 0.82)");
+    $(".vjs-control").css("color","#e0e0e0");
+    $("div.vjs-play-progress").css("background-color","#fff");
+    //$("div.video-js").css({"height":data.video.height,"width":data.video.width});
+
+    $("#titlebar").css("background-image","url(img/texture.png), -webkit-linear-gradient(rgba(15, 39, 158, 0.82),rgba(15, 39, 158, 0.82))");
+    $("#toolbarContainer").css("background-image","url(img/texture.png), -webkit-linear-gradient(rgba(15, 39, 158, 0.82),rgba(15, 39, 158, 0.82))");
+    //$("#the-canvas").css("width",data.presentacion.width);
+    $('#documentName').css("color","#F2F2F2");
+    $('.toolbarLabel').css("color","#F2F2F2");
+    $('#page_num').css("color","#F2F2F2");
+
+    // Initialize the plugin.
+    var transcript = video.transcript(options);
+    // Then attach the widget to the page.
+    var transcriptContainer = document.querySelector('#transcript');
+    transcriptContainer.appendChild(transcript.el());
+});
 
 {{/js}}

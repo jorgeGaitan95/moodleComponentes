@@ -27,7 +27,7 @@
     require_once(dirname(__FILE__).'/lib.php');
     require_once($CFG->dirroot . '/mod/assign/locallib.php');
     $id = required_param('id', PARAM_INT);
-
+    $activityid= optional_param('activityid', 0, PARAM_INT);
     if($id){
       if (! $assign = $DB->get_record("assign", array("id" => $id))) {
           print_error('invalidforumid', 'forum');
@@ -53,7 +53,7 @@
                       'useridlistid' => optional_param('useridlistid', $assign->get_useridlist_key_id(), PARAM_ALPHANUM));
     $url = new moodle_url('/local/estrategia_didactica/assignview.php', $urlparams);
     $PAGE->set_url($url);
-
+    $PAGE->navbar->add('Estrategia Didactica');
     // Update module completion status.
     $assign->set_module_viewed();
     // Apply overrides.

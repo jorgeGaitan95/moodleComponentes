@@ -27,7 +27,7 @@
     require_once(dirname(__FILE__).'/lib.php');
 
     $id = required_param('id', PARAM_INT);
-
+    $activityid= optional_param('activityid', 0, PARAM_INT);
     if($id){
       if (! $chat = $DB->get_record("chat", array("id" => $id))) {
           print_error('invalidforumid', 'forum');
@@ -42,9 +42,10 @@
     }
     global $USER;
     $PAGE->set_title($chat->name);
+    $PAGE->navbar->add('Estrategia Didactica');
     $PAGE->set_pagelayout('base');
     $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/style.css'),true);
-    $actividades = getActivities($USER->id,$course->id);
+    $actividades = getActivities($USER->id,$course->id,$activityid);
     $data=(object)array();
     $data->activities=$actividades;
     $data->chatid=$chat->id;

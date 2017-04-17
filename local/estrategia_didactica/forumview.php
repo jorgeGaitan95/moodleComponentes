@@ -26,6 +26,7 @@
     require_once(dirname(dirname(dirname(__FILE__))).'/config.php');
     require_once(dirname(__FILE__).'/lib.php');
     $id= optional_param('id', 0, PARAM_INT);
+    $activityid= optional_param('activityid', 0, PARAM_INT);
     $mode        = optional_param('mode', 0, PARAM_INT);     // Forum ID
     if($id){
       if (! $forum = $DB->get_record("forum", array("id" => $id))) {
@@ -41,14 +42,16 @@
     }
     global $USER;
     $PAGE->set_title($forum->name);
+    $PAGE->navbar->add('Estrategia Didactica');
     $PAGE->add_body_class('forumtype-'.$forum->type);
     $PAGE->add_body_class('path-mod-forum');
     $PAGE->set_pagelayout('base');
     $PAGE->requires->css(new moodle_url('/local/estrategia_didactica/style/style.css'),true);
-    $actividades = getActivities($USER->id,$course->id);
+    $actividades = getActivities($USER->id,$course->id,$activityid);
     $data=(object)array();
     $data->activities=$actividades;
     echo $OUTPUT->header();
+    //Añade las tabs dentro de la pagina
     echo $OUTPUT->render_from_template('local_estrategia_didactica/tabs', $data);
     echo $OUTPUT->heading(format_string($forum->name), 2);
     if ($forum->type == 'single') {

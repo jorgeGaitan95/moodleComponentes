@@ -1,8 +1,4 @@
-<div class="tab">
-  {{#activities}}
-    <button class="tablinks" onclick="window.location.href='{{{url}}}'">Actividad {{id}}</button>
-  {{/activities}}
-</div>
+{{> local_estrategia_didactica/tabs }}
 
 <div style="margin-bottom:22px;">
   <p col=3>
@@ -35,25 +31,25 @@
 </video>
 <div id="transcript" style="margin-top:15px;width:49%;margin-right:2%;float:left;">
 </div>
-<div style="width: 100%;
-  margin-top: 43px;
-  height: 203px;
-  float: left;
-  height: 249px;
-  padding: 25px;
-  box-sizing: border-box;
-  border: 1px solid #e0e0e0;">
-  {{{components.repository}}}
-</div>
 {{#js}}
 var video = videojs('my-player');
-console.log(document.querySelector('#transcript'));
 var options = {
   showTitle: false,
   showTrackSelector: true,
 };
 var transcript = video.transcript(options);
-// Then attach the widget to the page.
-var transcriptContainer = document.querySelector('#transcript');
-transcriptContainer.appendChild(transcript.el());
+
+video.ready(function() {
+    $("div.vjs-control-bar").css("background-color","rgba(15, 39, 158, 0.82)");
+    $("ul.vjs-menu-content").css("background-color","rgba(15, 39, 158, 0.82)");
+    $(".vjs-control").css("color","#e0e0e0");
+    $("div.vjs-play-progress").css("background-color","#fff");
+    //$("div.video-js").css({"height":data.video.height,"width":data.video.width});
+    // Initialize the plugin.
+    var transcript = video.transcript(options);
+    // Then attach the widget to the page.
+    var transcriptContainer = document.querySelector('#transcript');
+    transcriptContainer.appendChild(transcript.el());
+});
+
 {{/js}}

@@ -24,6 +24,9 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
+/*
+ Funcion para añadir links de navegacion al bloque de navegacion del moodle en donde se suele colocar los cursos y las secciones de los mismos
+*/
 function local_estrategia_didactica_extend_navigation(global_navigation $navigation) {
 $nodeFoo = $navigation->add('Estrategia Didáctica');
 $nodeBar = $nodeFoo->add('Actividad Formación');
@@ -31,23 +34,47 @@ $nodeVaribilidaddes=$nodeBar->add('Variabilidad1',new moodle_url('/local/estrate
 $nodeVaribilidaddes=$nodeBar->add('Variabilidad2',new moodle_url('/local/estrategia_didactica/variabilidad2.php'));
 $nodeVaribilidaddes=$nodeBar->add('PruebaQuiz',new moodle_url('/local/estrategia_didactica/variabilidad2.php'));
 }
+/**
+  *Funcion para obtener la Estrategia Didactica asociada a un estudiante
+  * @global object
+  * @param int $userid
+  * @param int $courseid
+  * @return estrategia didactica asociada al estudiante en el curso
+*/
 function getEstrategiaDidactica($userid, $courseid){
   global $DB;
   return $DB->get_record('assigneducational_strategy', array('userid'=>$userid,'courseid'=>$courseid));
 }
-function getActivities($userid, $courseid){
+/**
+  *Funcion para obtener las actividades de la estrategia didactica asociada a un estudiante
+  * @global object
+  * @param int $userid
+  * @param int $courseid
+  * @return array de actividades pertenecientes a una determianda estrategia didactica. a cada elemento de este array
+  * se le agrega una url para permitir la navegacion entre ellas
+*/
+function getActivities($userid, $courseid,$activityid){
   global $DB;
   $activities=array();
   $estrategia_didactica = getEstrategiaDidactica($userid,$courseid);
   $result= $DB->get_records('activities', array('educational_strategy_id'=>$estrategia_didactica->educational_strategy_id));
   foreach ($result as $activity) {
+    $cssclass="";
+    if($activity->id==$activityid)
+      $cssclass="active";
     $url= new moodle_url('/local/estrategia_didactica/index.php',array('id' => 3,'activityid'=>$activity->id));
-    $aux= array('id' => $activity->id ,'url' =>$url,'name' => $activity->name,'description'=>$activity->description);
+    $aux= array('id' => $activity->id ,'url' =>$url,'name' => $activity->name,'description'=>$activity->description,'cssclass'=>$cssclass);
     array_push($activities,$aux);
     //print_object($aux);
   }
   return $activities;
 }
+/**
+  *Funcion para obtener la plantilla asignada a una determinada actividad
+  * @global object
+  * @param int $activityid
+  * @return nombre de la plantilla asiganada a la actividad
+*/
 function getTemplateName($activityid){
   global $DB;
   $template=$DB->get_record_sql('SELECT tmp.templatename FROM {template} as tmp
@@ -55,7 +82,12 @@ function getTemplateName($activityid){
     where tmp_act.active=1 and tmp_act.activitiesid=?',array($activityid));
   return $template->templatename;
 }
-
+/**
+  *Funcion para obtener los componentes presentes en una actividad
+  * @global object
+  * @param int $activityid
+  * @return array con los componentes presentes en la actividad
+*/
 function getComponents($activitiesid){
   global $DB;
   $data=(object)array();
@@ -63,35 +95,46 @@ function getComponents($activitiesid){
     INNER JOIN {components} as comp on template_act.id=comp.template_activities_id
     WHERE template_act.activitiesid=?',array($activitiesid));
   foreach ($components as $component) {
+    //TODO: cambiar por un switch
+    //componente video
     if($component->typecomponents_id==1){
       $video=$DB->get_record('video', array('idcomponent'=>$component->id));
       $data->video=$video;
     }
+    //componente Presentacion
     if($component->typecomponents_id==2){
       $presentacion=$DB->get_record('viewer', array('idcomponent'=>$component->id));
       $data->presentacion=$presentacion;
     }
+    //componente Repository
     if($component->typecomponents_id==6){
       $repository=listarArchivos('25');
       $data->repository=$repository;
     }
+    //Componente Forum
     if($component->typecomponents_id==7){
       $idForum= getForumid($component->id);
-      redirect(new moodle_url('/local/estrategia_didactica/forumview.php', array('id' => $idForum)));
+      redirect(new moodle_url('/local/estrategia_didactica/forumview.php', array('id' => $idForum,'activityid'=>$activitiesid)));
     }
+    //componente Assign
     if($component->typecomponents_id==4){
       $idAssign= getAssignid($component->id);
-      redirect(new moodle_url('/local/estrategia_didactica/assingview.php', array('id' =>$idAssign)));
+      redirect(new moodle_url('/local/estrategia_didactica/assingview.php', array('id' =>$idAssign,'activityid'=>$activitiesid)));
     }
+    //componente Chat
     if($component->typecomponents_id==3){
       $idchat= getChatid($component->id);
-      redirect(new moodle_url('/local/estrategia_didactica/chatview.php', array('id' =>$idchat)));
+      redirect(new moodle_url('/local/estrategia_didactica/chatview.php', array('id' =>$idchat,'activityid'=>$activitiesid)));
     }
     //TODO: completar con los demás elementos
   }
   return $data;
 }
+/**
+  *Funcion para permitir el manejo de archivos dentro de moodle
+*/
 function local_estrategia_didactica_pluginfile($course, $context, $filearea, $args, $forcedownload){
+  //TODO: Investigar mas acerca del tema , esta funcion aun no funciona. es mas bien un punto de referencia
   $out = array();
 
   $fs= get_file_storage();
@@ -105,7 +148,11 @@ function local_estrategia_didactica_pluginfile($course, $context, $filearea, $ar
   $br = html_writer::empty_tag('br');
   return implode($br, $out);
 }
+/**
+  *Funcion para permitir el manejo de archivos dentro de moodle
+*/
 function createFile($contextid,$filepath){
+  //TODO: Investigar mas acerca del tema , esta funcion aun no funciona. es mas bien un punto de referencia
   $fs= get_file_storage();
   $fileinfo = array(
     'contextid' => 25,
@@ -132,7 +179,11 @@ function createFile($contextid,$filepath){
       echo "el archivo no existe";
   }*/
 }
+/**
+  *Funcion para permitir el manejo de archivos dentro de moodle
+*/
 function listarArchivos($contextid){
+  //TODO: Investigar mas acerca del tema , esta funcion aun no funciona. es mas bien un punto de referencia
   $out = array();
   $fs= get_file_storage();
   $files = $fs->get_area_files($contextid, 'local_estrategia_didactica', 'repository');
@@ -159,6 +210,13 @@ function listarArchivos($contextid){
   }
   return $s;
 }
+/**
+ * Funcion para obtner el id del foro dado el id de un componente
+ *
+ * @global object
+ * @param int $componentid
+ * @return id del foro asociado al componente
+ */
 function getForumid($componentid){
   global $DB;
   $forum_component=$DB->get_record('forum_components',array('idcomponent'=>$componentid));
@@ -1210,7 +1268,13 @@ function getChatid($componentid){
 }
 
 //ASSING
-
+/**
+ * Funcion para obtner el id de la Assign dado el id de un componente
+ *
+ * @global object
+ * @param int $componentid
+ * @return id de la Assign asociado al componente
+ */
 function getAssignid($componentid){
   global $DB;
   $assign_component=$DB->get_record('assign_components',array('idcomponent'=>$componentid));

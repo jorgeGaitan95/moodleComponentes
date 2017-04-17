@@ -8,7 +8,6 @@
     <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
   </p>
 </div>
-<!--{{> local_estrategia_didactica/prueba }}-->
 <div style="width:600px;margin:auto;">
   <video
       id="my-player"
@@ -32,22 +31,79 @@
   <div id="transcript" style="width:100%;margin:auto; margin-top: 15px;">
   </div>
 </div>
-<script id="prueba" type="text/javascript">
-  var scriptTag = "<script>var page=document.getElementById('page'); var page_content = document.getElementById('region-main'); console.log(page_content); page.innerHTML=page_content.outerHTML<";
-  scriptTag +=  "/script>";
-  actualizacion_iframe= function(){
-    $("#iframe-forum").contents().find('body').append(scriptTag);
-  }
-</script>
+
 {{#js}}
-var video = videojs('my-player');
-console.log(document.querySelector('#transcript'));
-var options = {
-  showTitle: false,
-  showTrackSelector: true,
-};
-var transcript = video.transcript(options);
-// Then attach the widget to the page.
-var transcriptContainer = document.querySelector('#transcript');
-transcriptContainer.appendChild(transcript.el());
+  var Button = videojs.getComponent('Button');
+  /*var transcriptButton =videojs.extend(Button,{
+
+    constructor: function () {
+      Button.apply(this, arguments);
+      this.addClass("vsj-transcript");
+    },
+    handleClick: function () {
+      this.options_.showTranscript=!this.options_.showTranscript
+      if(this.options_.showTranscript){
+        $('#transcript').show()
+      }else{
+        $('#transcript').hide()
+      }
+    }
+  });
+
+  var video = videojs('my-player');
+  var options = {
+    showTitle: false,
+    showTrackSelector: true,
+  };
+
+  //AGREGA EL BOTON A LA BARRA DE CONTROLES DEL VIDEO PLAYER
+  var controlBar= video.getChild('controlBar');
+  var penultimoControl=controlBar.getChild("audioTrackButton");
+  var transciptControl=controlBar.addChild('transcriptButton',{showTranscript:true});
+  controlBar.el().insertBefore(transciptControl.el(),penultimoControl.el());
+  */
+  var video = videojs('my-player');
+  var options = {
+    showTitle: false,
+    showTrackSelector: true,
+  };
+  var transcript = video.transcript(options);
+
+  video.ready(function() {
+      $("div.vjs-control-bar").css("background-color","rgba(15, 39, 158, 0.82)");
+      $("ul.vjs-menu-content").css("background-color","rgba(15, 39, 158, 0.82)");
+      $(".vjs-control").css("color","#e0e0e0");
+      $("div.vjs-play-progress").css("background-color","#fff");
+      //$("div.video-js").css({"height":data.video.height,"width":data.video.width});
+      // Initialize the plugin.
+      var transcript = video.transcript(options);
+      // Then attach the widget to the page.
+      var transcriptContainer = document.querySelector('#transcript');
+      transcriptContainer.appendChild(transcript.el());
+ });
+  //PLugin Jquery para resaltar las palabras que se encuentren dentro de un texto
+  //Esta funcionalidad es util para resoltar las palabras que coincidad en el panel de trasncripcion
+  jQuery.fn.highlight = function (str, className) {
+      var regex = new RegExp(str, "gi");
+      return this.each(function () {
+          $(this).contents().filter(function() {
+              return this.nodeType == 3 && regex.test(this.nodeValue);
+          }).replaceWith(function() {
+              return (this.nodeValue || "").replace(regex, function(match) {
+                  return "<span class=\"" + className + "\">" + match + "</span>";
+              });
+          });
+      });
+  };
+
+  function buscarPalabra() {
+    //limpa los campos resaltados si exiten
+    var seleccionadas=$(".highlight");
+    seleccionadas.each(function () {
+        $(this).contents().unwrap();
+    }
+    );
+    var query=$("#query").val();
+    $(".transcript-text").highlight(query,"highlight");
+  }
 {{/js}}
